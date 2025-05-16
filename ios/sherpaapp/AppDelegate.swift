@@ -1,4 +1,7 @@
 import Expo
+// @generated begin Intercom header - expo prebuild (DO NOT MODIFY) sync-f6fd06e08d30c2c66260b72f45072d393b20a2dc
+import intercom_react_native
+// @generated end Intercom header
 import React
 import ReactAppDependencyProvider
 
@@ -28,8 +31,8 @@ public class AppDelegate: ExpoAppDelegate {
       in: window,
       launchOptions: launchOptions)
 #endif
-
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  IntercomModule.initialize("ios_sdk-32fade9ec5dfcc3ce5543c96e7f2232ae4f00af53", withAppId: "l2hpbrqs")
+  return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
   // Linking API

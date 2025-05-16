@@ -4,32 +4,57 @@
     "slug": "sherpa-app",
     "version": "1.0.0",
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./app/assets/image/Onboarding.png "
     },
     "experiments": {
       "tsconfigPaths": true
     },
-    "plugins": [],
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "image": "./app/assets/image/Onboarding.png",
+          "dark": {
+            "image": "./app/assets/image/Onboarding.png"
+          },
+          "resizeMode": "contain",
+          "imageWidth": 1024
+        }
+      ],
+      [
+        "@intercom/intercom-react-native",
+        {
+          "appId": "l2hpbrqs",
+          "androidApiKey": "android_sdk-92047e4ccd9bc9c607663bbe871587ea8ba4502a",
+          "iosApiKey": "ios_sdk-32fade9ec5dfcc3ce5543c96e7f2232ae4f00af53",
+          "intercomRegion": "US"
+        }
+      ]
     ],
+    "orientation": "portrait",
+    "icon": "./app/assets/image/Onboarding.png",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.duyld.sherpa-app"
+      "bundleIdentifier": "com.medium.GoSherpa",
+      "icon": {
+        "dark": "./app/assets/image/AppIcon1024.png",
+        "light": "./app/assets/image/AppIcon1024.png"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.VIBRATE",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.VIBRATE"
+      ],
+      "package": "com.duyld.sherpaapp"
     }
   }
 }

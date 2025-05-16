@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userSelector } from 'app/store/selectors';
 import SignInScreen from 'app/screens/Authen/SignIn';
 // import SignUpScreen from 'app/screens/Authen/SignUp';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-// import { userAction } from 'app/store/actions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { userAction } from 'app/store/actions';
 import { useQuery } from '@tanstack/react-query';
 // eslint-disable-next-line import/no-unresolved
-// import { CURRENT_USER, LIMIT_ITEM, STATUS } from 'app/utils/constants';
+import { CURRENT_USER, LIMIT_ITEM, STATUS } from 'app/utils/constants';
 // import BootSplash from 'react-native-bootsplash';
 import ROUTER from './router';
+import * as SplashScreen from 'expo-splash-screen';
 // import ChangePassword from 'app/screens/profile/ChangePassword';
 // import RegisterSherpa from 'app/screens/profile/RegisterSherpa';
 // import UserDetail from 'app/screens/user/UserDetail';
@@ -29,24 +30,29 @@ import ROUTER from './router';
 // import ResetPassword from 'app/screens/Authen/ResetPassword';
 import RemindReviewToast from 'app/components/Toast/RemindReviewToast';
 import { getUserOrders } from 'app/api/userOrderApi';
-// import { getProfile } from 'app/api/userApi';
+import { getProfile } from 'app/api/userApi';
 import { Platform, View } from 'react-native';
 // import MySherpas from 'app/screens/mySherpas/MySherpas';
 // import Bookings from 'app/screens/booking/Bookings';
 // import ListExplore from 'app/screens/explore/ListExplore';
 // import ProfileMenu from 'app/screens/profile/ProfileMenu';
-// import Intercom from '@intercom/intercom-react-native';
-// import { generateHmac, getIntercomContact } from 'app/api/intercomApi';
+import Intercom from '@intercom/intercom-react-native';
+import { generateHmac, getIntercomContact } from 'app/api/intercomApi';
 
+SplashScreen.preventAutoHideAsync();
+SplashScreen.setOptions({
+  duration: 300,
+  fade: true,
+});
 const Stack = createNativeStackNavigator();
-// // const linking = {
-// //   prefixes: ['sherpa://'],
-// //   config: {
-// //     screens: {
-// //       stripe: 'stripe',
-// //     },
-// //   },
-// // };
+const linking = {
+  prefixes: ['sherpa://'],
+  config: {
+    screens: {
+      stripe: 'stripe',
+    },
+  },
+};
 
 // const TabNavigator = () => (
 //   <Stack.Navigator screenOptions={{ headerShown: false, animation: 'none' }}>
@@ -123,24 +129,43 @@ const StackScreenNoAuthen = () => (
 );
 
 const AppNavigator = (props: any) => {
-  // const dispatchr
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector(userSelector);
 
-  // const getStorageCurrentUser = async () => {
-  //   const userStorage: any = await AsyncStorage.getItem(CURRENT_USER);
-  //   if (userStorage) {
-  //     const user = JSON.parse(userStorage);
-  //     const response = await getProfile(user._id);
-  //     if (response?.data?.code === 401) return;
-  //     dispatch(userAction.setCurrentUser({ ...user, ...response?.data?.data }));
-  //     setTimeout(() => loginIntercom(), 200);
-  //   }
-  // };
-  // const { isLoading } = useQuery({
-  //   queryKey: ['getStorageCurrentUser'],
-  //   queryFn: getStorageCurrentUser,
-  // });
+  const loginIntercom = async () => {
+    const responseIntercomContact: any = await getIntercomContact();
+    const intercomContact = responseIntercomContact?.data?.data;
+    const userHashData = await generateHmac({
+      contactId: intercomContact?.id,
+      platform: Platform.OS,
+    });
+    const userHash: any = userHashData?.data?.data;
+    await Intercom.setUserHash(userHash);
+    await Intercom.loginUserWithUserAttributes({
+      email: intercomContact?.email,
+      name: intercomContact?.name,
+      userId: intercomContact?.id,
+    });
+  };
+
+  const getStorageCurrentUser = async () => {
+    const userStorage: any = await AsyncStorage.getItem(CURRENT_USER);
+    if (userStorage) {
+      const user = JSON.parse(userStorage);
+      const response = await getProfile(user._id);
+      if (response?.data?.code === 401) return;
+      dispatch(userAction.setCurrentUser({ ...user, ...response?.data?.data }));
+      setTimeout(() => loginIntercom(), 200);
+    }
+    return true
+  };
+  const { isLoading } = useQuery({
+    queryKey: ['getStorageCurrentUser'],
+    queryFn: getStorageCurrentUser,
+  });
+  if (isLoading && !currentUser) return <View />;
   return (
-    <NavigationContainer  {...props}>
+    <NavigationContainer linking={linking} onReady={() => SplashScreen.hide()} {...props}>
       <StackScreenNoAuthen />
     </NavigationContainer>
   );
