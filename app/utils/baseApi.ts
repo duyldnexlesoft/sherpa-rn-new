@@ -1,6 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import axios from 'axios';
 import { CURRENT_USER, httpMethods } from './constants';
-// import {BASE_URL} from '@env';
+import {BASE_URL} from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { userAction } from 'app/store/actions';
 import store from 'app/store/store';
@@ -9,8 +10,8 @@ import { omitBy } from 'lodash';
 
 const execute = async (method: string, endpoint: string, body: object = {}, headers: any = {}) => {
   const userStorage = await AsyncStorage.getItem(CURRENT_USER);
-  // axios.defaults.baseURL = BASE_URL;
-  axios.defaults.baseURL = 'http://localhost:3001';
+  axios.defaults.baseURL = BASE_URL;
+  // axios.defaults.baseURL = 'http://localhost:3001';
   const token = userStorage ? JSON.parse(userStorage).AccessToken : '';
   const requestConfig: any = {
     withCredentials: true,

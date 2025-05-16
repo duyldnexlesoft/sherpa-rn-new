@@ -9,9 +9,9 @@ import { useDispatch } from 'react-redux';
 import TextInput from 'app/components/TextInput';
 import ButtonGreen from 'app/components/button/ButtonGreen';
 import LogoSvg from 'app/assets/svg/logo.svg';
-// import EmailIcon from 'app/assets/svg/email.svg';
-// import EyeIcon from 'app/assets/svg/eye.svg';
-// import EyeOffIcon from 'app/assets/svg/eye-slash.svg';
+import EmailIcon from 'app/assets/svg/email.svg';
+import EyeIcon from 'app/assets/svg/eye.svg';
+import EyeOffIcon from 'app/assets/svg/eye-slash.svg';
 import { useTranslation } from 'react-i18next';
 import ROUTER from 'app/navigation/router';
 import BasicLayout from 'app/layout/BasicLayout';
@@ -37,18 +37,6 @@ const SignIn = ({ navigation }: any) => {
     },
     onError: () => {},
   });
-  // const muLogin = useMutationState('login', {
-  //   mutationFn: login,
-  //   onSuccess: (response: any) => {
-  //     queryClient.removeQueries();
-  //     if (response?.data?.data?._id) {
-  //       dispatch(userAction.setCurrentUser(response?.data?.data));
-  //     } else {
-  //       Alert.alert(response?.data?.message);
-  //     }
-  //   },
-  //   onError: () => {},
-  // });
   const { control, handleSubmit, formState } = useForm({
     defaultValues: { Email: '', Password: '' },
   });
@@ -74,7 +62,7 @@ const SignIn = ({ navigation }: any) => {
               returnKeyType="next"
               onSubmitEditing={() => passwordInputRef.current.focus()}
               error={errors.Email}
-              // rightIcon={EmailIcon}
+              rightIcon={EmailIcon}
             />
             {errors.Email && (
               <Text className="pt-0.5 text-[10px] text-red-600">{t('invalidUsername')}</Text>
@@ -89,7 +77,7 @@ const SignIn = ({ navigation }: any) => {
               onSubmitEditing={handleSubmit(onSubmit)}
               secureTextEntry={!showPassword}
               control={control}
-              // rightIcon={showPassword ? EyeOffIcon : EyeIcon}
+              rightIcon={showPassword ? EyeOffIcon : EyeIcon}
               rightAction={() => setShowPassword(!showPassword)}
             />
           </View>
