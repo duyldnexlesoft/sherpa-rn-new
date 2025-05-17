@@ -18,9 +18,13 @@ import Alert from 'app/components/Alert';
 import Text from 'app/components/Text';
 import ButtonBlue from 'app/components/button/ButtonBlue';
 import ROUTER from 'app/navigation/router';
+import {create} from 'twrnc';
+import tailwindConfig from 'tailwind.config';
 const dimensions = Dimensions.get('screen');
 
 const EditGallery = (props: any) => {
+  const newConfig: any = {theme: tailwindConfig.theme};
+  const tw = create(newConfig);
   const {isUpdateProfile, service, verifiedUser, rangeDate} = props.route?.params || {};
   const {t} = useTranslation();
   const dispatch = useDispatch();
@@ -108,7 +112,7 @@ const EditGallery = (props: any) => {
         {...props}
         renderRight={() => (
           <Pressable className="rounded-full w-9 h-9 items-center justify-center bg-white border border-border" onPress={handleChoosePhoto}>
-            <Add18Icon width={18} className="text-primary" />
+            <Add18Icon width={18} style={tw`text-primary`} />
           </Pressable>
         )}
         title={isUpdateProfile ? t('addPhotos') : null}

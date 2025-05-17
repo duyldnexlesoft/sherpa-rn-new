@@ -11,18 +11,18 @@ import {useQuery} from '@tanstack/react-query';
 import {CURRENT_USER, LIMIT_ITEM, STATUS} from 'app/utils/constants';
 import ROUTER from './router';
 import * as SplashScreen from 'expo-splash-screen';
-// import ChangePassword from 'app/screens/profile/ChangePassword';
-// import RegisterSherpa from 'app/screens/profile/RegisterSherpa';
+import ChangePassword from 'app/screens/profile/ChangePassword';
+import RegisterSherpa from 'app/screens/profile/RegisterSherpa';
 import UserDetail from 'app/screens/user/UserDetail';
-// import EditGallery from 'app/screens/profile/gallerry/EditGallery';
+import EditGallery from 'app/screens/profile/gallerry/EditGallery';
 // import ListExploreByShepa from 'app/screens/explore/ListExploreByShepa';
 // import ServiceDetail from 'app/screens/service/ServiceDetail';
 // import ServiceRequest from 'app/screens/service/ServiceRequest';
 // import Messages from 'app/screens/booking/Messages';
 // import BookingDetail from 'app/screens/booking/BookingDetail';
 // import Checkout from 'app/screens/booking/Checkout';
-// import MyCard from 'app/screens/profile/MyCard';
-// import Support from 'app/screens/profile/Support';
+import MyCard from 'app/screens/profile/MyCard';
+import Support from 'app/screens/profile/Support';
 import ForgotPassword from 'app/screens/Authen/ForgotPassword';
 import ConfirmPasswordCode from 'app/screens/Authen/ConfirmPasswordCode';
 import ResetPassword from 'app/screens/Authen/ResetPassword';
@@ -62,7 +62,7 @@ const TabNavigator = () => (
 );
 
 const StackScreenAuthen = () => {
-  const {currentUser} = useSelector(userSelector);  
+  const {currentUser} = useSelector(userSelector);
   const [booking, setBooking]: any = useState(null);
   const {data} = useQuery({
     queryKey: ['getUserOrders', currentUser._id],
@@ -81,25 +81,25 @@ const StackScreenAuthen = () => {
   });
 
   useEffect(() => {
-    setBooking(data?.data?.data?.edges?.[0])
-  }, [data?.data?.data?.edges]);  
+    setBooking(data?.data?.data?.edges?.[0]);
+  }, [data?.data?.data?.edges]);
 
   return (
     <>
       <Stack.Navigator screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
         <Stack.Screen name={ROUTER.HOME} component={TabNavigator} />
         <Stack.Screen name={ROUTER.USER_DETAIL} component={UserDetail} />
-        {/* <Stack.Screen name={ROUTER.CHANGE_PASSWORD} component={ChangePassword} />
-        <Stack.Screen name={ROUTER.REGISTER_SHERPA} component={RegisterSherpa} />
         <Stack.Screen name={ROUTER.EDIT_GALLERY} component={EditGallery} />
-        <Stack.Screen name={ROUTER.FIND_SHERPA} component={ListExploreByShepa} />
+        <Stack.Screen name={ROUTER.CHANGE_PASSWORD} component={ChangePassword} />
+        <Stack.Screen name={ROUTER.REGISTER_SHERPA} component={RegisterSherpa} />
+        {/*  <Stack.Screen name={ROUTER.FIND_SHERPA} component={ListExploreByShepa} />
         <Stack.Screen name={ROUTER.SERVICE_DETAIL} component={ServiceDetail} />
         <Stack.Screen name={ROUTER.SERVICE_REQUEST} component={ServiceRequest} />
         <Stack.Screen name={ROUTER.MESSAGES} component={Messages} />
         <Stack.Screen name={ROUTER.BOOKING_DEAIL} component={BookingDetail} />
-        <Stack.Screen name={ROUTER.CHECKOUT} component={Checkout} />
+        <Stack.Screen name={ROUTER.CHECKOUT} component={Checkout} /> */}
         <Stack.Screen name={ROUTER.MY_CARD} component={MyCard} />
-        <Stack.Screen name={ROUTER.SUPPORT} component={Support} /> */}
+        <Stack.Screen name={ROUTER.SUPPORT} component={Support} />
       </Stack.Navigator>
       {booking && <RemindReviewToast booking={booking} />}
     </>
