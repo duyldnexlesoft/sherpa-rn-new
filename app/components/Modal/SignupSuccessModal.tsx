@@ -9,6 +9,7 @@ import {useMutation} from '@tanstack/react-query';
 import {resendVerifyAccountLink} from 'app/api/userApi';
 import Modal from './Modal';
 import Alert from '../Alert';
+import { remapProps } from 'nativewind';
 
 const SignupSuccessModal = (props: any) => {
   const {navigation, userCreate} = props;
@@ -52,4 +53,5 @@ const SignupSuccessModal = (props: any) => {
   );
 };
 
+remapProps(SignupSuccessModal, {className: 'style'});
 export default SignupSuccessModal;

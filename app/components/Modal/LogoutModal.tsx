@@ -3,6 +3,7 @@ import Text from '../Text';
 import UserLogoutSvg from 'app/assets/svg/userLogout.svg';
 import {useTranslation} from 'react-i18next';
 import Modal from './Modal';
+import { remapProps } from 'nativewind';
 
 const LogoutModal = (props: any) => {
   const {setModal, onSubmit} = props;
@@ -33,5 +34,5 @@ const LogoutModal = (props: any) => {
     </Modal>
   );
 };
-
+remapProps(LogoutModal, {className: 'style'});
 export default LogoutModal;

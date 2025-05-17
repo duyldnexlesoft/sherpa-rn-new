@@ -15,5 +15,4 @@ const Image = (props: ImageCustomProps) => {
   return <FastImage style={style} source={source || {uri: uri, priority: FastImage.priority.normal}} resizeMode={FastImage.resizeMode.contain} />;
 };
 remapProps(Image, {className: 'style'});
-
 export default Image;

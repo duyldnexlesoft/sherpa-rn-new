@@ -3,6 +3,7 @@ import Text from '../Text';
 import TrashSvg from 'app/assets/svg/trash.svg';
 import {useTranslation} from 'react-i18next';
 import Modal from './Modal';
+import { remapProps } from 'nativewind';
 
 const DeleteUserModal = (props: any) => {
   const {setModal, onSubmit} = props;
@@ -33,5 +34,5 @@ const DeleteUserModal = (props: any) => {
     </Modal>
   );
 };
-
+remapProps(DeleteUserModal, {className: 'style'});
 export default DeleteUserModal;

@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { userAction } from 'app/store/actions';
 import store from 'app/store/store';
 import { omitBy } from 'lodash';
-// import Alert from 'app/components/Alert';
+import Alert from 'app/components/Alert';
 
 const execute = async (method: string, endpoint: string, body: object = {}, headers: any = {}) => {
   const userStorage = await AsyncStorage.getItem(CURRENT_USER);
@@ -50,7 +50,7 @@ const handleCatch = (error: any) => {
 const handleToken = (response: any) => {
   if (response?.data?.code === 401) {
     store.dispatch(userAction.removeCurrentUser());
-    // Alert.alert('Your token has expired! Please login again.');
+    Alert.alert('Your token has expired! Please login again.');
   }
   return response;
 };

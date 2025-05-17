@@ -1,4 +1,3 @@
-import React from 'react';
 import AnimatedLoading from '../Animated/AnimatedLoading';
 import Modal from './Modal';
 

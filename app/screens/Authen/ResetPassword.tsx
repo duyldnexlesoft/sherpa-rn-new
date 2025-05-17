@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';

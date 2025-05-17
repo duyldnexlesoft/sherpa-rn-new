@@ -1,6 +1,6 @@
-import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import Text from '../Text';
+import { remapProps } from 'nativewind';
 
 const Button = (props: any) => {
   return (
@@ -10,4 +10,5 @@ const Button = (props: any) => {
   );
 };
 
+remapProps(Button, {className: 'style'});
 export default Button;

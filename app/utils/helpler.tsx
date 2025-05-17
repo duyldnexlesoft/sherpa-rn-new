@@ -3,21 +3,18 @@ import {REVIEW_TYPE, STATUS} from './constants';
 import moment from 'moment';
 import {cloneDeep, filter, find, floor, isEmpty, map, mean, size, toUpper, trim} from 'lodash';
 import {launchImageLibrary} from 'react-native-image-picker';
-// import Alert from 'app/components/Alert';
+import Alert from 'app/components/Alert';
 
 export const createFormData = (photo: any, body: any = {}) => {
-  const data = new FormData();
-
-  // data.append('image', {
-  //   name: photo.fileName,
-  //   type: photo.type,
-  //   uri: Platform.OS === 'ios' ? photo.uri.replace('file://', '') : photo.uri,
-  // });
-
-  // Object.keys(body).forEach(key => {
-  //   data.append(key, body[key]);
-  // });
-
+  const data: any = new FormData();
+  data.append('image', {
+    name: photo.fileName,
+    type: photo.type,
+    uri: Platform.OS === 'ios' ? photo.uri.replace('file://', '') : photo.uri,
+  });
+  Object.keys(body).forEach(key => {
+    data.append(key, body[key]);
+  });
   return data;
 };
 
@@ -145,7 +142,7 @@ export const handleImageLibrary = async (t: any) => {
         if (!files.find((file: any) => !file.fileSize || file.fileSize > size25mb)) {
           resolve(files);
         } else {
-          // Alert.alert(t('updoad25Mb'));
+          Alert.alert(t('updoad25Mb'));
         }
       }
     });

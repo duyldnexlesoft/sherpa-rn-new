@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect} from 'react';
+import { remapProps } from 'nativewind';
+import {useEffect} from 'react';
 import {View} from 'react-native';
 import Animated, {useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming} from 'react-native-reanimated';
 
@@ -49,4 +50,5 @@ const AnimatedLoading = ({style}: any) => {
   );
 };
 
+remapProps(AnimatedLoading, {className: 'style'});
 export default AnimatedLoading;

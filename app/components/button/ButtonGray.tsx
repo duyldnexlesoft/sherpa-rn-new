@@ -1,6 +1,6 @@
-import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Text from '../Text';
+import { remapProps } from 'nativewind';
 
 const ButtonGray = (props: any) => {
   return (
@@ -24,4 +24,5 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
 });
+remapProps(ButtonGray, {className: 'style'});
 export default ButtonGray;

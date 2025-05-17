@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {remapProps} from 'nativewind';
 import {BackHandler, Dimensions, KeyboardAvoidingView, Platform, View} from 'react-native';
 import {Gesture, GestureDetector, GestureHandlerRootView} from 'react-native-gesture-handler';

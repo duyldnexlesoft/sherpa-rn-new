@@ -1,7 +1,7 @@
-import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import ArrowRightIcon from 'assets/svg/arrow-right.svg';
+import ArrowRightIcon from 'app/assets/svg/arrow-right.svg';
 import Text from '../Text';
+import { remapProps } from 'nativewind';
 
 const ButtonBlue = (props: any) => {
   const { children, noIcon, uppercase, disabled } = props;
@@ -14,6 +14,5 @@ const ButtonBlue = (props: any) => {
     </TouchableOpacity>
   );
 };
-
-
+remapProps(ButtonBlue, {className: 'style'});
 export default ButtonBlue;
