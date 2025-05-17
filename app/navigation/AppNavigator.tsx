@@ -1,16 +1,14 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { userSelector } from 'app/store/selectors';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {userSelector} from 'app/store/selectors';
 import SignInScreen from 'app/screens/Authen/SignIn';
-// import SignUpScreen from 'app/screens/Authen/SignUp';
+import SignUpScreen from 'app/screens/Authen/SignUp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { userAction } from 'app/store/actions';
-import { useQuery } from '@tanstack/react-query';
-// eslint-disable-next-line import/no-unresolved
-import { CURRENT_USER, LIMIT_ITEM, STATUS } from 'app/utils/constants';
-// import BootSplash from 'react-native-bootsplash';
+import {userAction} from 'app/store/actions';
+import {useQuery} from '@tanstack/react-query';
+import {CURRENT_USER, LIMIT_ITEM, STATUS} from 'app/utils/constants';
 import ROUTER from './router';
 import * as SplashScreen from 'expo-splash-screen';
 // import ChangePassword from 'app/screens/profile/ChangePassword';
@@ -25,19 +23,19 @@ import * as SplashScreen from 'expo-splash-screen';
 // import Checkout from 'app/screens/booking/Checkout';
 // import MyCard from 'app/screens/profile/MyCard';
 // import Support from 'app/screens/profile/Support';
-// import ForgotPassword from 'app/screens/Authen/ForgotPassword';
-// import ConfirmPasswordCode from 'app/screens/Authen/ConfirmPasswordCode';
-// import ResetPassword from 'app/screens/Authen/ResetPassword';
+import ForgotPassword from 'app/screens/Authen/ForgotPassword';
+import ConfirmPasswordCode from 'app/screens/Authen/ConfirmPasswordCode';
+import ResetPassword from 'app/screens/Authen/ResetPassword';
 import RemindReviewToast from 'app/components/Toast/RemindReviewToast';
-import { getUserOrders } from 'app/api/userOrderApi';
-import { getProfile } from 'app/api/userApi';
-import { Platform, View } from 'react-native';
-// import MySherpas from 'app/screens/mySherpas/MySherpas';
-// import Bookings from 'app/screens/booking/Bookings';
-// import ListExplore from 'app/screens/explore/ListExplore';
-// import ProfileMenu from 'app/screens/profile/ProfileMenu';
+import {getUserOrders} from 'app/api/userOrderApi';
+import {getProfile} from 'app/api/userApi';
+import {Platform, View} from 'react-native';
+import MySherpas from 'app/screens/mySherpas/MySherpas';
+import Bookings from 'app/screens/booking/Bookings';
+import ListExplore from 'app/screens/explore/ListExplore';
+import ProfileMenu from 'app/screens/profile/ProfileMenu';
 import Intercom from '@intercom/intercom-react-native';
-import { generateHmac, getIntercomContact } from 'app/api/intercomApi';
+import {generateHmac, getIntercomContact} from 'app/api/intercomApi';
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
@@ -54,83 +52,73 @@ const linking = {
   },
 };
 
-// const TabNavigator = () => (
-//   <Stack.Navigator screenOptions={{ headerShown: false, animation: 'none' }}>
-//     <Stack.Screen name={ROUTER.SIGN_IN} component={SignInScreen} />
-//     {/* <Stack.Screen name={ROUTER.MY_SHERPAS} component={MySherpas} />
-//     <Stack.Screen name={ROUTER.BOOKINGS} component={Bookings} />
-//     <Stack.Screen name={ROUTER.EXPLORE} component={ListExplore} />
-//     <Stack.Screen name={ROUTER.PROFILE} component={ProfileMenu} /> */}
-//   </Stack.Navigator>
-// );
+const TabNavigator = () => (
+  <Stack.Navigator screenOptions={{headerShown: false, animation: 'none'}}>
+    <Stack.Screen name={ROUTER.MY_SHERPAS} component={MySherpas} />
+    <Stack.Screen name={ROUTER.BOOKINGS} component={Bookings} />
+    <Stack.Screen name={ROUTER.EXPLORE} component={ListExplore} />
+    <Stack.Screen name={ROUTER.PROFILE} component={ProfileMenu} />
+  </Stack.Navigator>
+);
 
-// const StackScreenAuthen = () => {
-//   const { currentUser } = useSelector(userSelector);
-//   const [booking, setBooking]: any = useState(null);
-//   const {
-//     status,
-//     fetchStatus,
-//     data: projects,
-//   } = useQuery({
-//     queryKey: ['projects', currentUser._id],
-//     queryFn: getUserOrders,
-//     // The query will not execute until the userId exists
-//     staleTime: Infinity,
-//   });
-//   // useQuery(
-//   //   ['getUserOrders', currentUser._id],
-//   //   () =>
-//   //     getUserOrders({
-//   //       limit: LIMIT_ITEM,
-//   //       skip: 0,
-//   //       status: STATUS.COMPLETED,
-//   //       isAthleteReview: '0',
-//   //       searchValue: '',
-//   //       userId: currentUser._id,
-//   //       sortBy: 'StartTime',
-//   //       sortOrder: 'desc',
-//   //     }),
-//   //   {
-//   //     onSuccess: ({ data }: any) => setBooking(data?.data?.edges?.[0]),
-//   //     staleTime: Infinity,
-//   //   },
-//   // );
+const StackScreenAuthen = () => {
+  const {currentUser} = useSelector(userSelector);  
+  const [booking, setBooking]: any = useState(null);
+  const {data} = useQuery({
+    queryKey: ['getUserOrders', currentUser._id],
+    queryFn: () =>
+      getUserOrders({
+        limit: LIMIT_ITEM,
+        skip: 0,
+        status: STATUS.COMPLETED,
+        isAthleteReview: '0',
+        searchValue: '',
+        userId: currentUser._id,
+        sortBy: 'StartTime',
+        sortOrder: 'desc',
+      }),
+    staleTime: Infinity,
+  });
 
-//   return (
-//     <>
-//       <Stack.Navigator screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
-//         <Stack.Screen name={ROUTER.HOME} component={TabNavigator} />
-//         {/* <Stack.Screen name={ROUTER.CHANGE_PASSWORD} component={ChangePassword} />
-//         <Stack.Screen name={ROUTER.REGISTER_SHERPA} component={RegisterSherpa} />
-//         <Stack.Screen name={ROUTER.USER_DETAIL} component={UserDetail} />
-//         <Stack.Screen name={ROUTER.EDIT_GALLERY} component={EditGallery} />
-//         <Stack.Screen name={ROUTER.FIND_SHERPA} component={ListExploreByShepa} />
-//         <Stack.Screen name={ROUTER.SERVICE_DETAIL} component={ServiceDetail} />
-//         <Stack.Screen name={ROUTER.SERVICE_REQUEST} component={ServiceRequest} />
-//         <Stack.Screen name={ROUTER.MESSAGES} component={Messages} />
-//         <Stack.Screen name={ROUTER.BOOKING_DEAIL} component={BookingDetail} />
-//         <Stack.Screen name={ROUTER.CHECKOUT} component={Checkout} />
-//         <Stack.Screen name={ROUTER.MY_CARD} component={MyCard} />
-//         <Stack.Screen name={ROUTER.SUPPORT} component={Support} /> */}
-//       </Stack.Navigator>
-//       {booking && <RemindReviewToast booking={booking} />}
-//     </>
-//   );
-// };
+  useEffect(() => {
+    setBooking(data?.data?.data?.edges?.[0])
+  }, [data?.data?.data?.edges]);  
+
+  return (
+    <>
+      <Stack.Navigator screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
+        <Stack.Screen name={ROUTER.HOME} component={TabNavigator} />
+        {/* <Stack.Screen name={ROUTER.CHANGE_PASSWORD} component={ChangePassword} />
+        <Stack.Screen name={ROUTER.REGISTER_SHERPA} component={RegisterSherpa} />
+        <Stack.Screen name={ROUTER.USER_DETAIL} component={UserDetail} />
+        <Stack.Screen name={ROUTER.EDIT_GALLERY} component={EditGallery} />
+        <Stack.Screen name={ROUTER.FIND_SHERPA} component={ListExploreByShepa} />
+        <Stack.Screen name={ROUTER.SERVICE_DETAIL} component={ServiceDetail} />
+        <Stack.Screen name={ROUTER.SERVICE_REQUEST} component={ServiceRequest} />
+        <Stack.Screen name={ROUTER.MESSAGES} component={Messages} />
+        <Stack.Screen name={ROUTER.BOOKING_DEAIL} component={BookingDetail} />
+        <Stack.Screen name={ROUTER.CHECKOUT} component={Checkout} />
+        <Stack.Screen name={ROUTER.MY_CARD} component={MyCard} />
+        <Stack.Screen name={ROUTER.SUPPORT} component={Support} /> */}
+      </Stack.Navigator>
+      {booking && <RemindReviewToast booking={booking} />}
+    </>
+  );
+};
 
 const StackScreenNoAuthen = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
+  <Stack.Navigator screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
     <Stack.Screen name={ROUTER.SIGN_IN} component={SignInScreen} />
-    {/* <Stack.Screen name={ROUTER.SIGN_UP} component={SignUpScreen} />
+    <Stack.Screen name={ROUTER.SIGN_UP} component={SignUpScreen} />
     <Stack.Screen name={ROUTER.FORGOT_PASSWORD} component={ForgotPassword} />
     <Stack.Screen name={ROUTER.EMAIL_VERTIFICATION} component={ConfirmPasswordCode} />
-    <Stack.Screen name={ROUTER.RESET_PASSWORD} component={ResetPassword} /> */}
+    <Stack.Screen name={ROUTER.RESET_PASSWORD} component={ResetPassword} />
   </Stack.Navigator>
 );
 
 const AppNavigator = (props: any) => {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector(userSelector);
+  const {currentUser} = useSelector(userSelector);
 
   const loginIntercom = async () => {
     const responseIntercomContact: any = await getIntercomContact();
@@ -154,19 +142,19 @@ const AppNavigator = (props: any) => {
       const user = JSON.parse(userStorage);
       const response = await getProfile(user._id);
       if (response?.data?.code === 401) return;
-      dispatch(userAction.setCurrentUser({ ...user, ...response?.data?.data }));
+      dispatch(userAction.setCurrentUser({...user, ...response?.data?.data}));
       setTimeout(() => loginIntercom(), 200);
     }
-    return true
+    return true;
   };
-  const { isLoading } = useQuery({
+  const {isLoading} = useQuery({
     queryKey: ['getStorageCurrentUser'],
     queryFn: getStorageCurrentUser,
   });
   if (isLoading && !currentUser) return <View />;
   return (
     <NavigationContainer linking={linking} onReady={() => SplashScreen.hide()} {...props}>
-      <StackScreenNoAuthen />
+      {currentUser ? <StackScreenAuthen /> : <StackScreenNoAuthen />}
     </NavigationContainer>
   );
 };

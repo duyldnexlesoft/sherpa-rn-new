@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {remapProps} from 'nativewind';
 import {BackHandler, Dimensions, KeyboardAvoidingView, Platform, View} from 'react-native';
 import {Gesture, GestureDetector, GestureHandlerRootView} from 'react-native-gesture-handler';
 import Animated, {runOnJS, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
@@ -91,5 +92,5 @@ const Modal = (props: any) => {
     </View>
   );
 };
-
+remapProps(Modal, {className: 'style'});
 export default Modal;

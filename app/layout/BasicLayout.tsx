@@ -1,11 +1,16 @@
 import {Dimensions, SafeAreaView, StatusBar, View, Platform} from 'react-native';
 import BgSignin from 'app/assets/svg/bg-signin.svg';
 import LoadingScreenModal from 'app/components/Modal/LoadingScreenModal';
+import {create} from 'twrnc';
+import tailwindConfig from 'tailwind.config';
 const dimensions = Dimensions.get('screen');
 
-const BasicLayout = ({style, isLoading, children, light}: any) => {
+const BasicLayout = ({className, isLoading, children, light}: any) => {
+  const newConfig: any = {theme: tailwindConfig.theme};
+  const tw = create(newConfig);
+  const style = tw`${className}`;
   const statusBarHeight = Platform.OS === 'android' ? Number(StatusBar.currentHeight || 0) + 10 : 0;
-  const paramPaddingTop = style?.find((elm: any) => elm.paddingTop)?.paddingTop || 0;
+  const paramPaddingTop = Number(style?.paddingTop || 0);
   return (
     <View style={[{paddingTop: statusBarHeight + paramPaddingTop}, style]}>
       <LoadingScreenModal isLoading={isLoading} />

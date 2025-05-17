@@ -1,5 +1,4 @@
-/* eslint-disable import/no-unresolved */
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { View, ScrollView, Pressable, TouchableOpacity } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
