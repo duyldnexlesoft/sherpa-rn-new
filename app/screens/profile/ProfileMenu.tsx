@@ -33,6 +33,8 @@ import Image from 'app/components/Image';
 import NavBar from 'app/components/NavBar';
 import Alert from 'app/components/Alert';
 import Intercom, {Space} from '@intercom/intercom-react-native';
+import {create} from 'twrnc';
+import tailwindConfig from 'tailwind.config';
 const dimensions = Dimensions.get('screen');
 
 const ProfileMenu = (props: any) => {
@@ -147,14 +149,15 @@ const ProfileMenu = (props: any) => {
 };
 
 const RowMenu = (props: any) => {
+  const newConfig: any = {theme: tailwindConfig.theme};
+  const tw = create(newConfig);
   return (
     <TouchableOpacity className="p-4 flex-row justify-between items-center bg-redd-300" {...props}>
       <View className="flex-row items-center">
         <props.Icon />
         <Text className="text-base pl-3">{props.lable}</Text>
       </View>
-
-      <ArrowRightIcon className="text-activePrimary" />
+      <ArrowRightIcon style={tw`text-activePrimary`} />
     </TouchableOpacity>
   );
 };

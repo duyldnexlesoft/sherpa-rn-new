@@ -34,18 +34,15 @@ const MySherpas = (props: any) => {
   const [totalShepas, setTotalShepas]: any = useState(0);
   const [skip, setSkip]: any = useState(0);
   const [searchValue, setSearchValue]: any = useState('');
-  const {isLoading} = useQuery({
+  const {isLoading, data} = useQuery({
     queryKey: ['getMyShepas', skip, searchValue],
     queryFn: () => getShepas({limit: LIMIT_ITEM, searchValue, skip, isFavorite: true}),
     staleTime: Infinity,
-    select() {
-      handleQueryData(searchValue, skip);
-    },
   });
 
   useEffect(() => {
     handleQueryData(searchValue, skip);
-  }, []);
+  }, [data?.data?.data]);
 
   const handleScroll = (event: any) => {
     const {contentSize, contentOffset, layoutMeasurement} = event.nativeEvent;

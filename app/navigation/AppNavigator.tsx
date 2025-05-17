@@ -13,7 +13,7 @@ import ROUTER from './router';
 import * as SplashScreen from 'expo-splash-screen';
 // import ChangePassword from 'app/screens/profile/ChangePassword';
 // import RegisterSherpa from 'app/screens/profile/RegisterSherpa';
-// import UserDetail from 'app/screens/user/UserDetail';
+import UserDetail from 'app/screens/user/UserDetail';
 // import EditGallery from 'app/screens/profile/gallerry/EditGallery';
 // import ListExploreByShepa from 'app/screens/explore/ListExploreByShepa';
 // import ServiceDetail from 'app/screens/service/ServiceDetail';
@@ -88,9 +88,9 @@ const StackScreenAuthen = () => {
     <>
       <Stack.Navigator screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
         <Stack.Screen name={ROUTER.HOME} component={TabNavigator} />
+        <Stack.Screen name={ROUTER.USER_DETAIL} component={UserDetail} />
         {/* <Stack.Screen name={ROUTER.CHANGE_PASSWORD} component={ChangePassword} />
         <Stack.Screen name={ROUTER.REGISTER_SHERPA} component={RegisterSherpa} />
-        <Stack.Screen name={ROUTER.USER_DETAIL} component={UserDetail} />
         <Stack.Screen name={ROUTER.EDIT_GALLERY} component={EditGallery} />
         <Stack.Screen name={ROUTER.FIND_SHERPA} component={ListExploreByShepa} />
         <Stack.Screen name={ROUTER.SERVICE_DETAIL} component={ServiceDetail} />
