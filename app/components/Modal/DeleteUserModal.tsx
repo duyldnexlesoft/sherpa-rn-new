@@ -4,8 +4,12 @@ import TrashSvg from 'app/assets/svg/trash.svg';
 import {useTranslation} from 'react-i18next';
 import Modal from './Modal';
 import { remapProps } from 'nativewind';
+import {create} from 'twrnc';
+import tailwindConfig from 'tailwind.config';
 
 const DeleteUserModal = (props: any) => {
+  const newConfig: any = {theme: tailwindConfig.theme};
+  const tw = create(newConfig);
   const {setModal, onSubmit} = props;
   const {t} = useTranslation();
   return (
@@ -14,7 +18,7 @@ const DeleteUserModal = (props: any) => {
         <View className="w-full bg-white rounded-[10px] items-center">
           <View className="p-8 items-center">
             <View className="items-center justify-center w-[60px] h-[60px] bg-red-500 rounded-full border border-[6px] border-red-50">
-              <TrashSvg className="text-white" />
+              <TrashSvg style={tw`text-white`} />
             </View>
             <Text className="text-base text-black font-bold mb-2 mt-4">{t('deleteAccountTitle')}</Text>
             <Text className="text-sm text-black text-center">{t('deleteAccountDescription')}</Text>

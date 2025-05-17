@@ -1,4 +1,3 @@
-import React from 'react';
 import {Pressable, View} from 'react-native';
 import Text from '../Text';
 import SignupSuccessSvg from 'app/assets/svg/signup-success.svg';

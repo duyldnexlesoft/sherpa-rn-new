@@ -46,7 +46,6 @@
     ],
     "orientation": "portrait",
     "icon": "./app/assets/image/Onboarding.png",
-    "userInterfaceStyle": "light",
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
@@ -54,20 +53,27 @@
       "icon": {
         "dark": "./app/assets/image/AppIcon1024.png",
         "light": "./app/assets/image/AppIcon1024.png"
+      },
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "This app would like to save images to your device.",
+        "NSPhotoLibraryAddUsageDescription": "This app would like to save images to your device."
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/image/Onboarding.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.VIBRATE",
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.READ_MEDIA_VIDEO",
         "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.VIBRATE"
+        "android.permission.WRITE_EXTERNAL_STORAGE"
       ],
-      "package": "com.duyld.sherpaapp"
+      "package": "com.duyld.sherpaapp",
+      "edgeToEdgeEnabled": true
     }
   }
 }

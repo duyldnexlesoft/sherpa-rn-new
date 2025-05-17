@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, View} from 'react-native';
 import Text from '../Text';
 import {useTranslation} from 'react-i18next';
-// import User30Svg from 'assets/svg/user30.svg';
+// import User30Svg from 'app/assets/svg/user30.svg';
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import ROUTER from 'app/navigation/router';
 import {useDispatch} from 'react-redux';
