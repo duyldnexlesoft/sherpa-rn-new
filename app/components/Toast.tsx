@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Dimensions, SafeAreaView, View} from 'react-native';
 import Animated, {runOnJS, useAnimatedStyle, useSharedValue, withDelay, withSequence, withTiming} from 'react-native-reanimated';
 import {Gesture, GestureDetector} from 'react-native-gesture-handler';

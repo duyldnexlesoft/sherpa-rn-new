@@ -20,10 +20,14 @@ import ButtonGreen from 'app/components/button/ButtonGreen';
 import BoxShepa from 'app/components/BoxShepa';
 import {useTranslation} from 'react-i18next';
 import NavBar from 'app/components/NavBar';
+import {create} from 'twrnc';
+import tailwindConfig from 'tailwind.config';
 const dimensions = Dimensions.get('screen');
 const gap = 16;
 
 const MySherpas = (props: any) => {
+  const newConfig: any = {theme: tailwindConfig.theme};
+  const tw = create(newConfig);
   const {t} = useTranslation();
   const queryClient = useQueryClient();
   const [shepas, setShepas]: any = useState(null);
@@ -85,7 +89,7 @@ const MySherpas = (props: any) => {
               value={searchValue}
               onChange={event => handleQueryData(event?.nativeEvent?.text, 0)}
               rightAction={searchValue ? () => handleQueryData('', 0) : null}
-              rightIcon={searchValue ? ClearIcon : <SearchIcon className="text-gray-500" width={20} height={20} />}
+              rightIcon={searchValue ? ClearIcon : <SearchIcon style={tw`text-gray-500`} width={20} height={20} />}
             />
           </View>
         </View>

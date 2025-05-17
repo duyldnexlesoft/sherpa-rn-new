@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {SafeAreaView, ScrollView, View, Pressable, Dimensions, Linking, TouchableOpacity} from 'react-native';
 import BgHeader from 'app/assets/svg/bgHeader.svg';
 import User30Icon from 'app/assets/svg/user30.svg';
