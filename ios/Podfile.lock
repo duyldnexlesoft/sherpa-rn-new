@@ -78,6 +78,13 @@ PODS:
   - intercom-react-native (8.5.0):
     - Intercom (~> 18.6.1)
     - React-Core
+  - MapboxCommon (24.8.0)
+  - MapboxCoreMaps (11.8.0):
+    - MapboxCommon (~> 24.8)
+  - MapboxMaps (11.8.0):
+    - MapboxCommon (= 24.8.0)
+    - MapboxCoreMaps (= 11.8.0)
+    - Turf (= 3.0.0)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1897,6 +1904,34 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - rnmapbox-maps (10.1.38):
+    - MapboxMaps (= 11.8.0)
+    - React
+    - React-Core
+    - rnmapbox-maps/DynamicLibrary (= 10.1.38)
+    - Turf
+  - rnmapbox-maps/DynamicLibrary (10.1.38):
+    - DoubleConversion
+    - hermes-engine
+    - MapboxMaps (= 11.8.0)
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React
+    - React-Core
+    - React-featureflags
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Turf
+    - Yoga
   - RNReanimated (3.17.5):
     - DoubleConversion
     - glog
@@ -2154,7 +2189,7 @@ PODS:
     - StripePayments (= 24.12.1)
     - StripePaymentsUI (= 24.12.1)
     - StripeUICore (= 24.12.1)
-  - stripe-react-native (0.45.0):
+  - stripe-react-native (0.46.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2178,14 +2213,14 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Stripe (~> 24.12.0)
-    - stripe-react-native/NewArch (= 0.45.0)
+    - stripe-react-native/NewArch (= 0.46.0)
     - StripeApplePay (~> 24.12.0)
     - StripeFinancialConnections (~> 24.12.0)
     - StripePayments (~> 24.12.0)
     - StripePaymentSheet (~> 24.12.0)
     - StripePaymentsUI (~> 24.12.0)
     - Yoga
-  - stripe-react-native/NewArch (0.45.0):
+  - stripe-react-native/NewArch (0.46.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2237,6 +2272,7 @@ PODS:
     - StripeUICore (= 24.12.1)
   - StripeUICore (24.12.1):
     - StripeCore (= 24.12.1)
+  - Turf (3.0.0)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -2327,6 +2363,7 @@ DEPENDENCIES:
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - "rnmapbox-maps (from `../node_modules/@rnmapbox/maps`)"
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
@@ -2337,6 +2374,9 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Intercom
+    - MapboxCommon
+    - MapboxCoreMaps
+    - MapboxMaps
     - Sentry
     - SocketRocket
     - Stripe
@@ -2347,6 +2387,7 @@ SPEC REPOS:
     - StripePaymentSheet
     - StripePaymentsUI
     - StripeUICore
+    - Turf
 
 EXTERNAL SOURCES:
   boost:
@@ -2520,6 +2561,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  rnmapbox-maps:
+    :path: "../node_modules/@rnmapbox/maps"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -2552,6 +2595,9 @@ SPEC CHECKSUMS:
   hermes-engine: 314be5250afa5692b57b4dd1705959e1973a8ebe
   Intercom: baf5b7c5107289aa4e503130ca5fffca92d5a2ae
   intercom-react-native: 53abff8003ebfa8780a8d3687d121bdb04df962f
+  MapboxCommon: 95fe03b74d0d0ca39dc646ca14862deb06875151
+  MapboxCoreMaps: f2a82182c5f6c6262220b81547c6df708012932b
+  MapboxMaps: dbe1869006c5918d62efc6b475fb884947ea2ecd
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 83ffb90c23ee5cea353bd32008a7bca100908f8c
   RCTRequired: eb7c0aba998009f47a540bec9e9d69a54f68136e
@@ -2620,6 +2666,7 @@ SPEC CHECKSUMS:
   RNBootSplash: d370d282f25d7749773cca253f22d63910c2a3d2
   RNCAsyncStorage: 39c42c1e478e1f5166d1db52b5055e090e85ad66
   RNGestureHandler: ebef699ea17e7c0006c1074e1e423ead60ce0121
+  rnmapbox-maps: 06893f0c7c156a27ff659c51a8e551b54db9c082
   RNReanimated: 2313402fe27fecb7237619e9c6fcee3177f08a65
   RNScreens: 5621e3ad5a329fbd16de683344ac5af4192b40d3
   RNSentry: 838e247af2fe6a2599820f25dccacd30e2142193
@@ -2627,7 +2674,7 @@ SPEC CHECKSUMS:
   Sentry: 1ca8405451040482877dcd344dfa3ef80b646631
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Stripe: 6a37e0d27872cb2c878d404676bd90cc3d7bf04b
-  stripe-react-native: 9ea574f576cb3eb03e5b70157329e83192df0af4
+  stripe-react-native: 003cac2e591912dfadff1074981257d6d5fac763
   StripeApplePay: 3caeb241c08f79b5f11024a96409317b50347e71
   StripeCore: fba9a10801900090b54a4384b85384e55643cbf6
   StripeFinancialConnections: 9eab846f1c0dc98ab14e3611e1a8436c026bea5c
@@ -2635,8 +2682,9 @@ SPEC CHECKSUMS:
   StripePaymentSheet: b0c28bbb9b0704cdacd54facb84654d841202cec
   StripePaymentsUI: 9b84384e81adc9c24f599f1a8991fb52c767fc62
   StripeUICore: 186f245526e86ab02578abcc6bb6d27cc34084c6
+  Turf: a1604e74adce15c58462c9ae2acdbf049d5be35e
   Yoga: c758bfb934100bb4bf9cbaccb52557cee35e8bdf
 
-PODFILE CHECKSUM: 6001ae8147d5e22b786beaa091d539288eea2459
+PODFILE CHECKSUM: 37338996fc12fefd1260c59b3bbd7e683e427788
 
 COCOAPODS: 1.16.2

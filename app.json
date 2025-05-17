@@ -29,6 +29,19 @@
           "iosApiKey": "ios_sdk-32fade9ec5dfcc3ce5543c96e7f2232ae4f00af53",
           "intercomRegion": "US"
         }
+      ],
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsVersion": "11.8.0",
+          "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiZ293aXRoc2hlcnBhIiwiYSI6ImNseGoxN2U1bDF2Z2wycW9kcnJlbnhrYW4ifQ.iYIQLy1o09GxK9O8Dya4hw"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Sherpa uses your location to filter services to nearby offerings."
+        }
       ]
     ],
     "orientation": "portrait",
