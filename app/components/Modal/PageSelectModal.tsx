@@ -3,14 +3,17 @@ import {useEffect, useState} from 'react';
 import {Platform, Pressable, SafeAreaView, ScrollView, StatusBar, Text, View} from 'react-native';
 import Header from '../Header';
 import _ from 'lodash';
-import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated';
-import colors from 'app/utils/colors';
-import {AnimatedCheckedIcon} from '../AnimatedIcon';
+import CheckedIcon from 'app/assets/svg/checked.svg';
 import {useTranslation} from 'react-i18next';
 import Modal from './Modal';
+import {remapProps} from 'nativewind';
+import {create} from 'twrnc';
+import tailwindConfig from 'tailwind.config';
 const LIMIT = 20;
 
 const PageSelectModal = (props: any) => {
+  const newConfig: any = {theme: tailwindConfig.theme};
+  const tw = create(newConfig);
   const {setModal, itemSelect, onSelect, title, items, navigation} = props;
   const {t} = useTranslation();
   const [selectItem, setSelectItem]: any = useState(itemSelect);
@@ -24,7 +27,7 @@ const PageSelectModal = (props: any) => {
   };
   const renderRight = () => {
     return (
-      <Pressable className="w-9 h-9 items-center justify-center" onPress={() => handleSelect(selectItem)}>
+      <Pressable className="h-9 items-center justify-center" onPress={() => handleSelect(selectItem)}>
         <Text className="font-medium text-gray-900">{t('done')}</Text>
       </Pressable>
     );
@@ -47,7 +50,6 @@ const PageSelectModal = (props: any) => {
       setLoadMore(false);
     }
   };
-
   return (
     <Modal animationType="fade" {...props}>
       <View className="bg-white h-full w-full" style={{paddingTop: statusBarHeight}}>
@@ -66,7 +68,10 @@ const PageSelectModal = (props: any) => {
                   className="bg-white h-12 flex-row items-center justify-between"
                   onPress={() => setSelectItem(item)}>
                   {item.render || <Text className="text-lg text-textContainer">{item.name}</Text>}
-                  <Checked selectItem={selectItem} item={item} />
+                  <View
+                    className={`w-[30px] h-[30px] items-center justify-center rounded-full ${selectItem?.id === item?.id ? 'bg-primary' : 'bg-backgroundHover'}`}>
+                    <CheckedIcon style={tw`${selectItem?.id === item?.id ? 'text-white' : 'text-backgroundHover'}`} />
+                  </View>
                 </Pressable>
               ))}
             </View>
@@ -76,24 +81,5 @@ const PageSelectModal = (props: any) => {
     </Modal>
   );
 };
-
-const Checked = ({selectItem, item}: any) => {
-  const aBackgroundColor = useSharedValue(colors.backgroundHover);
-  const aTextColor = useSharedValue(colors.backgroundHover);
-
-  const styleBackground = useAnimatedStyle(() => ({backgroundColor: aBackgroundColor.value}));
-  const styleText = useAnimatedStyle(() => ({color: aTextColor.value}));
-
-  useEffect(() => {
-    aBackgroundColor.value = withTiming(selectItem?.id === item?.id ? colors.primary : colors.backgroundHover, {duration: 200});
-    aTextColor.value = withTiming(selectItem?.id === item?.id ? colors.white : colors.backgroundHover, {duration: 200});
-  }, [selectItem]);
-
-  return (
-    <Animated.View className={'w-[30px] h-[30px] items-center justify-center rounded-full '} style={styleBackground}>
-      <AnimatedCheckedIcon animatedProps={styleText} />
-    </Animated.View>
-  );
-};
-
+remapProps(PageSelectModal, {className: 'style'});
 export default PageSelectModal;
