@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "sherpa-app",
+    "name": "Sherpa",
     "slug": "sherpa-app",
-    "version": "1.0.0",
+    "version": "3.0.0",
     "web": {
       "favicon": "./app/assets/image/Onboarding.png "
     },
