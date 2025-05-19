@@ -210,7 +210,7 @@ const Messages = ({navigation, route}: any) => {
                     </View>
                   )}
                   {message.booking && (
-                    <View className="w-full bg-lightSecondary rounded-md p-2.5 pt-0.5 gap-y-2 mt-2">
+                    <View className="w-full bg-lightSecondary rounded-md p-2.5 pt-1.5 gap-y-2 mt-2">
                       <View className="flex-row items-center justify-between">
                         <Text className="text-textContainer font-medium">{t('bookingNumber')}</Text>
                         <View className="flex-row items-center">
