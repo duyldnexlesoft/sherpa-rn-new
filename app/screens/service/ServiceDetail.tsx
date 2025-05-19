@@ -87,7 +87,7 @@ const ServiceDetail = (props: any) => {
 
   return (
     <ColorLayout className="bg-white h-full pt-0">
-      <Header {...props} absolute leftAction={() => navigation.navigate(ROUTER.USER_DETAIL, {user: verifiedUser})} />
+      <Header {...props} absolute />
       <ScrollView className="h-full" showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
         <View className="w-full">
           <SliderImage height={250} {...props} Images={concat(renderMapView, service.Images)} bottom={10} renderMapView />

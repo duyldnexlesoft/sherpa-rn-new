@@ -67,7 +67,7 @@ const UserDetail = (props: any) => {
         if (isUpdateProfile) {
           dispatch(userAction.setSherpa(verifiedUser));
           dispatch(bookingAction.cleanBooking());
-          navigation.navigate(ROUTER.SERVICE_REQUEST, {service, verifiedUser, rangeDate});
+          navigation.navigate(ROUTER.SERVICE_REQUEST, {service, verifiedUser, rangeDate, isUpdated: true});
         } else {
           setIsEdit(false);
         }

@@ -36,7 +36,7 @@ const ServiceRequest = (props: any) => {
   const {t} = useTranslation();
   const {currentUser} = useSelector(userSelector);
   const queryClient = useQueryClient();
-  const {booking, service, verifiedUser, rangeDate} = props?.route?.params;
+  const {booking, service, verifiedUser, rangeDate, isUpdated} = props?.route?.params;
   const DefaultAmountTime = service.DefaultAmountTime || 0;
   const {RUNNING, WALKING, CYCLING, HIKING, PERSONAL_TRAINING, GOLF, TENNIS, PERFORMATIVE_SPORTS, OTHER} = CATEGORIES;
   const [width, setWidth]: any = useState(0);
@@ -64,10 +64,10 @@ const ServiceRequest = (props: any) => {
     mutationFn: createUserOrder,
     onSuccess: ({data}: any) => {
       if (data?.code === 201) {
-        props.navigation.navigate(ROUTER.BOOKINGS);
+        props.navigation.navigate(ROUTER.HOME, {screen: ROUTER.BOOKINGS});
       } else if (data?.code === 409) {
         Alert.alert(t('serviceOld'));
-        props.navigation.navigate(ROUTER.EXPLORE);
+        props.navigation.navigate(ROUTER.HOME, {screen: ROUTER.EXPLORE});
       } else {
         Alert.alert(t('requestFailed'));
       }
@@ -131,7 +131,7 @@ const ServiceRequest = (props: any) => {
 
   return (
     <ColorLayout isLoading={muCreateUserOrder.isPending} className="bg-white">
-      <Header {...props} showHeaderTitle leftAction={handleBack} />
+      <Header {...props} showHeaderTitle leftAction={isUpdated && handleBack} />
       <View className="flex-1 bg-white p-4 items-center">
         <View className="flex-row">
           <Text className="font-bold">{t('bookedService1')}</Text>
