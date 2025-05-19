@@ -3,6 +3,7 @@ import User16Svg from 'app/assets/svg/user16.svg';
 import {camelCase, map, split} from 'lodash';
 import Text from './Text';
 import Image from './Image';
+import { remapProps } from 'nativewind';
 
 const Avatar = (props: any) => {
   const {item} = props;
@@ -19,4 +20,5 @@ const Avatar = (props: any) => {
   );
 };
 
+remapProps(Avatar, {className: 'style'});
 export default Avatar;
