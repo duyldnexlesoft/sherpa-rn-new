@@ -28,6 +28,7 @@ import LocationModal from 'app/components/Modal/LocationModal';
 import ToSherpaSuccessModal from 'app/components/Modal/ToSherpaSuccessModal';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Alert from 'app/components/Alert';
+import Svg from 'app/components/Svg';
 
 const RegisterSherpa = (props: any) => {
   const {t} = useTranslation();
@@ -168,7 +169,7 @@ const RegisterSherpa = (props: any) => {
                 rules={{required: t('birthDayRequired')}}
                 error={errors.DateOfBirth}
                 control={control}
-                rightIcon={<CalendarIcon className="text-gray-500" />}
+                rightIcon={<Svg icon={CalendarIcon} className="text-gray-500" />}
                 onPress={() => setModalOB(true)}
               />
               {errors.DateOfBirth && <Text className="text-red-600 pt-0.5 text-[10px]">{errors.DateOfBirth.message}</Text>}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
 import {remapProps} from 'nativewind';
 import {BackHandler, Dimensions, KeyboardAvoidingView, Platform, View} from 'react-native';

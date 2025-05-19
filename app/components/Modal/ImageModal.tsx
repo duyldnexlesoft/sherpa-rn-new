@@ -12,8 +12,6 @@ import {Snackbar} from 'react-native-paper';
 import Text from '../Text';
 import Image from '../Image';
 import Modal from './Modal';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
 import Svg from '../Svg';
 const dimensions = Dimensions.get('screen');
 
@@ -36,8 +34,6 @@ const ImageModal = (props: any) => {
 };
 
 const WithHoc = gestureHandlerRootHOC((props: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const top = props.top + 40;
   const bottom = 20;
   const {image, modal, setModal, setVisibleSnackbar} = props;

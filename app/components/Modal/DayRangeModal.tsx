@@ -76,7 +76,7 @@ const DayRangeModal = (props: any) => {
   };
 
   const handleSetRange = (value: any) => {
-    if (value != range) {
+    if (value !== range) {
       if (!value && (!requiredStart || startDate)) {
         setRange(value);
         if (startDate && delayTime && !endDate) {
@@ -134,7 +134,8 @@ const DayRangeModal = (props: any) => {
                   <Pressable
                     className="items-center justify-center h-8 w-6"
                     onPress={() => {
-                      setStartDate(null), setEndDate(null);
+                      setStartDate(null);
+                      setEndDate(null);
                     }}>
                     <View className="w-5 h-5 rounded-full items-center justify-center bg-gray-500">
                       <Svg icon={CloseIcon} className={`text-white`} width={10} height={10} />
