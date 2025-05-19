@@ -7,13 +7,10 @@ import CheckedIcon from 'app/assets/svg/checked.svg';
 import {useTranslation} from 'react-i18next';
 import Modal from './Modal';
 import {remapProps} from 'nativewind';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from '../Svg';
 const LIMIT = 20;
 
 const PageSelectModal = (props: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const {setModal, itemSelect, onSelect, title, items, navigation} = props;
   const {t} = useTranslation();
   const [selectItem, setSelectItem]: any = useState(itemSelect);
@@ -70,7 +67,7 @@ const PageSelectModal = (props: any) => {
                   {item.render || <Text className="text-lg text-textContainer">{item.name}</Text>}
                   <View
                     className={`w-[30px] h-[30px] items-center justify-center rounded-full ${selectItem?.id === item?.id ? 'bg-primary' : 'bg-backgroundHover'}`}>
-                    <CheckedIcon style={tw`${selectItem?.id === item?.id ? 'text-white' : 'text-backgroundHover'}`} />
+                    <Svg icon={CheckedIcon} className={`${selectItem?.id === item?.id ? 'text-white' : 'text-backgroundHover'}`} />
                   </View>
                 </Pressable>
               ))}

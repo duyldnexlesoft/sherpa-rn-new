@@ -11,12 +11,9 @@ import ServiceCalendar from '../ServiceCalendar';
 import {getWarningAvailability} from 'app/utils/helpler';
 import {split} from 'lodash';
 import Modal from './Modal';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from '../Svg';
 
 const DayRangeModal = (props: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const {t} = useTranslation();
   const {modal, setModal, onConfirm, onNext, dateRange, delayTime, minDate, requiredStart, requiredEnd, availability} = props;
   const mode = props.mode || 'date';
@@ -140,7 +137,7 @@ const DayRangeModal = (props: any) => {
                       setStartDate(null), setEndDate(null);
                     }}>
                     <View className="w-5 h-5 rounded-full items-center justify-center bg-gray-500">
-                      <CloseIcon style={tw`text-white`} width={10} height={10} />
+                      <Svg icon={CloseIcon} className={`text-white`} width={10} height={10} />
                     </View>
                   </Pressable>
                 )}
@@ -159,7 +156,7 @@ const DayRangeModal = (props: any) => {
                 {endDate && !range && (
                   <Pressable className="items-center justify-center h-8 w-6" onPress={() => setEndDate(null)}>
                     <View className="w-5 h-5 rounded-full items-center justify-center bg-gray-500">
-                      <CloseIcon style={tw`text-white`} width={10} height={10} />
+                      <Svg icon={CloseIcon} className={`text-white`} width={10} height={10} />
                     </View>
                   </Pressable>
                 )}
@@ -197,7 +194,7 @@ const DayRangeModal = (props: any) => {
               <View className="w-12 h-full">
                 {!range && (
                   <TouchableOpacity className="flex-1 items-center justify-center" onPress={() => handleSetRange(true)}>
-                    <ArrowLeftIcon style={tw`text-secondary`} />
+                    <Svg icon={ArrowLeftIcon} className={`text-secondary`} />
                   </TouchableOpacity>
                 )}
               </View>

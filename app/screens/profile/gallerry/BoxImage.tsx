@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect} from 'react';
 import {View, Dimensions, Pressable} from 'react-native';
@@ -13,15 +12,12 @@ import {userAction} from 'app/store/actions';
 import {changeImageIndex, deleteImage} from 'app/api/userApi';
 import {useMutation} from '@tanstack/react-query';
 import Image from 'app/components/Image';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from 'app/components/Svg';
 const dimensions = Dimensions.get('screen');
 const GAP = 10;
 const WIDH_DEFAULD = (dimensions.width - 32 - GAP * 2) / 3;
 
 const BoxImage = ({image, boxImages, setBoxImages, handleChoosePhoto, rootLayout}: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const dispatch = useDispatch();
   const {size, url, index, pointX, pointY} = image;
   const width = WIDH_DEFAULD * size + (size - 1) * GAP;
@@ -169,9 +165,9 @@ const BoxImage = ({image, boxImages, setBoxImages, handleChoosePhoto, rootLayout
         onPress={handleChoosePhoto}
         className="bg-backgroundHover absolute rounded-[10px] items-center justify-center"
         style={{width: width, height: width, transform: [{translateX: pointX}, {translateY: pointY}]}}>
-        <ImageIcon style={tw`text-border`} width={width / 4} height={width / 4} />
+        <Svg icon={ImageIcon} className={`text-border`} width={width / 4} height={width / 4} />
         <View className="w-6 h-6 rounded-full items-center justify-center bg-white absolute right-2 bottom-2 border border-border">
-          <AddIcon style={tw`text-primary`} width={14} height={14} />
+          <Svg icon={AddIcon} className={`text-primary`} width={14} height={14} />
         </View>
       </Pressable>
     );
@@ -186,7 +182,7 @@ const BoxImage = ({image, boxImages, setBoxImages, handleChoosePhoto, rootLayout
         <Pressable
           className="w-6 h-6 rounded-full items-center justify-center bg-white absolute right-2 bottom-2 border border-border"
           onPress={handleDeleteImage}>
-          <CloseIcon style={tw`text-gray-500`} width={14} height={14} />
+          <Svg icon={CloseIcon} className={`text-gray-500`} width={14} height={14} />
         </Pressable>
       </Animated.View>
     </GestureDetector>

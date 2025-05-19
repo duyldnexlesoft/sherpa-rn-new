@@ -4,6 +4,10 @@ import moment from 'moment';
 import {cloneDeep, filter, find, floor, isEmpty, map, mean, size, toUpper, trim} from 'lodash';
 import {launchImageLibrary} from 'react-native-image-picker';
 import Alert from 'app/components/Alert';
+import {create} from 'twrnc';
+import tailwindConfig from 'tailwind.config';
+const newConfig: any = {theme: tailwindConfig.theme};
+export const tw = create(newConfig);
 
 export const createFormData = (photo: any, body: any = {}) => {
   const data: any = new FormData();

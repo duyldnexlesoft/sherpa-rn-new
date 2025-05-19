@@ -9,6 +9,7 @@ import StarIcon from 'app/assets/svg/star.svg';
 import {filter, floor, size} from 'lodash';
 import Star60Svg from 'app/assets/svg/star60.svg';
 import {useTranslation} from 'react-i18next';
+import Svg from 'app/components/Svg';
 
 const ReviewTab = ({reviews, verifiedUser}: any) => {
   const {t} = useTranslation();
@@ -20,7 +21,7 @@ const ReviewTab = ({reviews, verifiedUser}: any) => {
       <View className="flex-1 bg-white px-4 pt-4">
         <Text className="text-lg font-medium text-textContainer">{t('review')}</Text>
         <View className="items-center justify-center py-8">
-          <Star60Svg />
+          <Svg icon={Star60Svg} />
           <Text className="text-xl font-bold text-gray-500 mt-7">{t('emptyReview')}</Text>
           <Text className="text-base text-gray-500 pt-3">{t('emptyReviewDescription')} </Text>
         </View>
@@ -52,7 +53,7 @@ const ReviewTab = ({reviews, verifiedUser}: any) => {
             const filterReview = filter(verifiedUser.Reviews, (r: any) => r.Rating === n);
             return (
               <View className="flex-row items-center justify-between my-0.5" key={`per-${index}`}>
-                <RatingStar rate={n} className="flex-row w-24" />
+                <Svg icon={RatingStar} rate={n} className="flex-row w-24" />
                 <View className="flex-1">
                   <ProgressBar
                     progress={size(filterReview) / (size(verifiedUser.Reviews) || 1)}
@@ -80,7 +81,7 @@ const ReviewTab = ({reviews, verifiedUser}: any) => {
                 </View>
               </View>
               <View className="flex-row items-center bg-lightSecondary rounded px-2 py-0.5">
-                <StarIcon width={13} />
+                <Svg icon={StarIcon} width={13} />
                 <Text className="pl-1 text-activeSecondary">{review.Rating}.0</Text>
               </View>
             </View>

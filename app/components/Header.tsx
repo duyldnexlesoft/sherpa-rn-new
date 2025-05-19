@@ -2,12 +2,9 @@ import {Platform, Pressable, SafeAreaView, StatusBar, View} from 'react-native';
 import {CommonActions} from '@react-navigation/native';
 import ArrowLeft from 'app/assets/svg/arrow-left.svg';
 import Text from './Text';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from './Svg';
 
 const Header = ({navigation, showLeft = true, leftAction, absolute, route, showHeaderTitle, renderRight, title}: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const statusBarHeight = Platform.OS === 'android' && absolute ? Number(StatusBar.currentHeight || 0) + 10 : 0;
   return (
     <SafeAreaView className={` ${absolute ? 'absolute' : ''} z-[1] w-full`}>
@@ -16,7 +13,7 @@ const Header = ({navigation, showLeft = true, leftAction, absolute, route, showH
           <Pressable
             className="rounded-full w-9 h-9 items-center justify-center bg-white border border-border"
             onPress={() => (leftAction ? leftAction() : navigation?.dispatch(CommonActions.goBack()))}>
-            <ArrowLeft style={tw`text-textContainer`} />
+            <Svg icon={ArrowLeft} className="text-textContainer" />
           </Pressable>
         ) : (
           <View className="w-9 h-9" />

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-unresolved */
 import ButtonGreen from 'app/components/button/ButtonGreen';
 import {useEffect, useRef, useState} from 'react';
@@ -25,13 +26,10 @@ import {useTranslation} from 'react-i18next';
 import Alert from 'app/components/Alert';
 import Recaptcha from 'react-native-recaptcha-that-works';
 import {CAPTCHA_SITE_KEY, WEBAPP_URL} from '@env';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from 'app/components/Svg';
 const HEIGHT = 82;
 
 const MyCard = (props: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const {t} = useTranslation();
   const {createToken, createPaymentMethod} = useStripe();
   const [cardDetails, setCardDetails]: any = useState(null);
@@ -148,7 +146,7 @@ const MyCard = (props: any) => {
                   <View className="rounded-lg flex-1 mb-4">
                     <View className="absolute rounded-r-lg top-0 bottom-0 right-0 w-[100px] bg-red-500">
                       <TouchableOpacity className="ml-5 flex-1 items-center justify-center" onPress={() => send(item.id)}>
-                        <TrashIcon style={tw`text-white`} />
+                        <Svg icon={TrashIcon} className={`text-white`} />
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -168,12 +166,12 @@ const MyCard = (props: any) => {
                 </View>
                 {cardDetails?.complete && (
                   <TouchableOpacity className="ml-4 h-8 w-8 bg-primary rounded-full items-center justify-center" onPress={() => send(null)}>
-                    <AddIcon style={tw`text-white`} width={16} height={16} />
+                    <Svg icon={AddIcon} className={`text-white`} width={16} height={16} />
                   </TouchableOpacity>
                 )}
                 {!cardDetails?.complete && (
                   <TouchableOpacity className="ml-4 h-8 w-8 bg-backgroundHover rounded-full items-center justify-center">
-                    <AddIcon style={tw`text-gray-400`} width={16} height={16} />
+                    <Svg icon={AddIcon} className={`text-gray-400`} width={16} height={16} />
                   </TouchableOpacity>
                 )}
               </View>

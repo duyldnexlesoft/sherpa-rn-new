@@ -7,12 +7,9 @@ import {setFavorite} from 'app/api/userApi';
 import {useDispatch, useSelector} from 'react-redux';
 import {userSelector, bookingSelector} from 'app/store/selectors';
 import {userAction} from 'app/store/actions';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from './Svg';
 
 const SherpaFavorite = ({verifiedUser, className, size}: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const dispatch = useDispatch();
   const {sherpa} = useSelector(userSelector);
   const {booking} = useSelector(bookingSelector);
@@ -44,8 +41,8 @@ const SherpaFavorite = ({verifiedUser, className, size}: any) => {
   };
   return (
     <TouchableOpacity className={className} onPress={handleSetFavorite}>
-      {!isFavorite && <HeadOutlineIcon style={tw`text-gray-500`} width={size || 24} height={size || 24} />}
-      {isFavorite && <HeadIcon style={tw`text-red-500`}  width={size || 24} height={size || 24} />}
+      {!isFavorite && <Svg icon={HeadOutlineIcon} className={`text-gray-500`} width={size || 24} height={size || 24} />}
+      {isFavorite && <Svg icon={HeadIcon} className={`text-red-500`}  width={size || 24} height={size || 24} />}
     </TouchableOpacity>
   );
 };

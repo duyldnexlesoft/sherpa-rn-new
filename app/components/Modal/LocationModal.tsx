@@ -10,12 +10,9 @@ import ClearIcon from 'app/assets/svg/clear.svg';
 import Text from '../Text';
 import _ from 'lodash';
 import Modal from './Modal';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from '../Svg';
 
 const LocationModal = (props: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const {location, setModal, handleSelectLocation} = props;
   const [locationValue, setLocationValue]: any = useState(location ? location.place_name : '');
   const [searchValue, setSearchText]: any = useState(location ? location.place_name : '');
@@ -65,7 +62,7 @@ const LocationModal = (props: any) => {
               rightAction={locationValue ? () => setLocationValue('') : null}
               rightIcon={!locationValue ? LocationIcon : ClearIcon}
               leftAction={() => setModal(false)}
-              leftIcon={<ArrowLeftIcon style={tw`text-textContainer ml-2`} />}
+              leftIcon={<Svg icon={ArrowLeftIcon} className={`text-textContainer ml-2`} />}
             />
             <ScrollView className="bg-white h-full mb-20">
               {(searchValue ? dataGeocoding?.data?.features : [])?.map((feature: any, index: any) => {

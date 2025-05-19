@@ -14,6 +14,7 @@ import Image from '../Image';
 import Modal from './Modal';
 import {create} from 'twrnc';
 import tailwindConfig from 'tailwind.config';
+import Svg from '../Svg';
 const dimensions = Dimensions.get('screen');
 
 const ImageModal = (props: any) => {
@@ -150,10 +151,10 @@ const WithHoc = gestureHandlerRootHOC((props: any) => {
       <SafeAreaView>
         <View className="flex-row justify-end px-[15] h-[40px]" style={{paddingTop: statusBarHeight}}>
           <Pressable onPress={saveToGallery}>
-            <DownloadSvg style={tw`text-white`} />
+            <Svg icon={DownloadSvg} className={`text-white`} />
           </Pressable>
           <Pressable className="pl-4" onPress={() => setModal(false)}>
-            <CloseSvg style={tw`text-white`} />
+            <Svg icon={CloseSvg} className={`text-white`} />
           </Pressable>
         </View>
       </SafeAreaView>

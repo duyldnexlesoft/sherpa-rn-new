@@ -2,6 +2,7 @@ import {View} from 'react-native';
 import {STATUS} from 'app/utils/constants';
 import Text from './Text';
 import {getStatus} from 'app/utils/helpler';
+import {remapProps} from 'nativewind';
 
 const LabelStatus = (props: any) => {
   const {booking} = props;
@@ -37,4 +38,5 @@ const LabelStatus = (props: any) => {
   );
 };
 
+remapProps(LabelStatus, {className: 'style'});
 export default LabelStatus;

@@ -1,11 +1,8 @@
 import {StatusBar, View, Platform} from 'react-native';
 import LoadingScreenModal from 'app/components/Modal/LoadingScreenModal';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import { tw } from 'app/utils/helpler';
 
 const ColorLayout = ({isLoading, children, light, className}: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const style = tw`${className}`;
   const statusBarHeight = Platform.OS === 'android' ? Number(StatusBar.currentHeight || 0) + 5 : 0;
   const paramPaddingTop = Number(style?.paddingTop || 0);

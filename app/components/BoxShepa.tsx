@@ -7,12 +7,9 @@ import SherpaFavorite from 'app/components/SherpaFavorite';
 import {useDispatch} from 'react-redux';
 import {bookingAction, userAction} from 'app/store/actions';
 import Image from './Image';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from './Svg';
 
 const BoxShepa = ({item, navigation}: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const dispatch = useDispatch();
   if (!item) {
     return <View className="h-48 flex-1" />;
@@ -29,7 +26,7 @@ const BoxShepa = ({item, navigation}: any) => {
         <Image className="w-full h-28 rounded-t-md" uri={item?.Images?.[0]} />
       ) : (
         <View className="w-full h-28 rounded-t-md bg-backgroundHover items-center justify-center">
-          <ImageIcon width={40} height={40} style={tw`text-gray-200`} />
+          <Svg icon={ImageIcon} width={40} height={40} className='text-gray-200' />
         </View>
       )}
       <View className="px-2.5 py-2">

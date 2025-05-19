@@ -26,7 +26,7 @@
         {
           "appId": "l2hpbrqs",
           "androidApiKey": "android_sdk-92047e4ccd9bc9c607663bbe871587ea8ba4502a",
-          "iosApiKey": "ios_sdk-32fade9ec5dfcc3ce5543c96e7f2232ae4f00af53",
+          "iosApiKey": "ios_sdk-32fade9ec5dfcc3ce5543c96e7f2232ae4f00af5",
           "intercomRegion": "US"
         }
       ],
@@ -56,7 +56,8 @@
       },
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "This app would like to save images to your device.",
-        "NSPhotoLibraryAddUsageDescription": "This app would like to save images to your device."
+        "NSPhotoLibraryAddUsageDescription": "This app would like to save images to your device.",
+        "NSLocationWhenInUseUsageDescription": "Sherpa uses your location to filter services to nearby offerings."
       }
     },
     "android": {
@@ -70,7 +71,9 @@
         "android.permission.READ_MEDIA_IMAGES",
         "android.permission.READ_MEDIA_VIDEO",
         "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE"
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
       ],
       "package": "com.duyld.sherpaapp",
       "edgeToEdgeEnabled": true

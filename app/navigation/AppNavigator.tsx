@@ -15,12 +15,12 @@ import ChangePassword from 'app/screens/profile/ChangePassword';
 import RegisterSherpa from 'app/screens/profile/RegisterSherpa';
 import UserDetail from 'app/screens/user/UserDetail';
 import EditGallery from 'app/screens/profile/gallerry/EditGallery';
-// import ListExploreByShepa from 'app/screens/explore/ListExploreByShepa';
-// import ServiceDetail from 'app/screens/service/ServiceDetail';
-// import ServiceRequest from 'app/screens/service/ServiceRequest';
-// import Messages from 'app/screens/booking/Messages';
-// import BookingDetail from 'app/screens/booking/BookingDetail';
-// import Checkout from 'app/screens/booking/Checkout';
+import ListExploreByShepa from 'app/screens/explore/ListExploreByShepa';
+import ServiceDetail from 'app/screens/service/ServiceDetail';
+import ServiceRequest from 'app/screens/service/ServiceRequest';
+import Messages from 'app/screens/booking/Messages';
+import BookingDetail from 'app/screens/booking/BookingDetail';
+import Checkout from 'app/screens/booking/Checkout';
 import MyCard from 'app/screens/profile/MyCard';
 import Support from 'app/screens/profile/Support';
 import ForgotPassword from 'app/screens/Authen/ForgotPassword';
@@ -92,12 +92,12 @@ const StackScreenAuthen = () => {
         <Stack.Screen name={ROUTER.EDIT_GALLERY} component={EditGallery} />
         <Stack.Screen name={ROUTER.CHANGE_PASSWORD} component={ChangePassword} />
         <Stack.Screen name={ROUTER.REGISTER_SHERPA} component={RegisterSherpa} />
-        {/*  <Stack.Screen name={ROUTER.FIND_SHERPA} component={ListExploreByShepa} />
+         <Stack.Screen name={ROUTER.FIND_SHERPA} component={ListExploreByShepa} />
         <Stack.Screen name={ROUTER.SERVICE_DETAIL} component={ServiceDetail} />
         <Stack.Screen name={ROUTER.SERVICE_REQUEST} component={ServiceRequest} />
         <Stack.Screen name={ROUTER.MESSAGES} component={Messages} />
         <Stack.Screen name={ROUTER.BOOKING_DEAIL} component={BookingDetail} />
-        <Stack.Screen name={ROUTER.CHECKOUT} component={Checkout} /> */}
+        <Stack.Screen name={ROUTER.CHECKOUT} component={Checkout} />
         <Stack.Screen name={ROUTER.MY_CARD} component={MyCard} />
         <Stack.Screen name={ROUTER.SUPPORT} component={Support} />
       </Stack.Navigator>
@@ -127,7 +127,7 @@ const AppNavigator = (props: any) => {
       contactId: intercomContact?.id,
       platform: Platform.OS,
     });
-    const userHash: any = userHashData?.data?.data;
+    const userHash: any = userHashData?.data?.data;    
     await Intercom.setUserHash(userHash);
     await Intercom.loginUserWithUserAttributes({
       email: intercomContact?.email,

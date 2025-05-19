@@ -10,12 +10,9 @@ import {userSelector, bookingSelector} from 'app/store/selectors';
 import {floorReview} from 'app/utils/helpler';
 import {isEmpty, join, size, split, trim} from 'lodash';
 import { useTranslation } from 'react-i18next';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from './Svg';
 
 const UserTop = ({navigation, style}: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const {t} = useTranslation();
   const {currentUser, sherpa} = useSelector(userSelector);
   const {booking} = useSelector(bookingSelector);
@@ -48,7 +45,7 @@ const UserTop = ({navigation, style}: any) => {
             <SherpaFavorite className="px-1.5" />
             {booking && (
               <TouchableOpacity className="px-1.5 relative" onPress={() => navigation.navigate(ROUTER.MESSAGES)}>
-                <MessageOutlineIcon style={tw`text-gray-500`} />
+                <Svg icon={MessageOutlineIcon} className={`text-gray-500`} />
                 {!isEmpty(Messages) && (
                   <View className="bg-red-600 h-[18px] min-w-[18px] items-center justify-center absolute top-[-6px] right-0 rounded-full px-1.5">
                     <Text className="text-white text-[10px] font-bold">

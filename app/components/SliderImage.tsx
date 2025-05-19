@@ -4,13 +4,10 @@ import ImageIcon from 'app/assets/svg/image.svg';
 import ROUTER from 'app/navigation/router';
 import _, {isString} from 'lodash';
 import Image from './Image';
-import {create} from 'twrnc';
-import tailwindConfig from 'tailwind.config';
+import Svg from './Svg';
 const {width} = Dimensions.get('screen');
 
 const SliderImage = ({height, Images, navigation, isViewSherpa, bottom}: any) => {
-  const newConfig: any = {theme: tailwindConfig.theme};
-  const tw = create(newConfig);
   const [indexImage, setIndexImage] = useState(0);
   const handleScroll = (event: any) => {
     const index = event.nativeEvent.contentOffset.x / width;
@@ -45,7 +42,7 @@ const SliderImage = ({height, Images, navigation, isViewSherpa, bottom}: any) =>
           onPress={() => !isViewSherpa && navigation.navigate(ROUTER.EDIT_GALLERY)}
           className="items-center justify-center w-full"
           style={{height, width}}>
-          <ImageIcon style={tw`text-border`} width={100} height={100} />
+          <Svg icon={ImageIcon} className={`text-border`} width={100} height={100} />
         </Pressable>
       )}
     </View>
