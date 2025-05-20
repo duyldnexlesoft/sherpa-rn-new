@@ -81,7 +81,7 @@ const MySherpas = (props: any) => {
               placeholderTextColor={colors.gray500}
               className="bg-white"
               value={searchValue}
-              onChange={event => handleQueryData(event?.nativeEvent?.text, 0)}
+              onChange={event => event?.nativeEvent?.text !== undefined && handleQueryData(event?.nativeEvent?.text, 0)}
               rightAction={searchValue ? () => handleQueryData('', 0) : null}
               rightIcon={searchValue ? ClearIcon : <Svg icon={SearchIcon} className={`text-gray-500`} width={20} height={20} />}
             />

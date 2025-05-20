@@ -55,7 +55,7 @@ const ListExplore = (props: any) => {
   });
   const handlegGeocoding = () => (myLocation ? geocoding(`${myLocation.longitude},${myLocation.latitude}`) : null);
   const {data: dataGeocoding} = useQuery({
-    queryKey: ['geocoding', myLocation],
+    queryKey: ['geocodingLocation', myLocation],
     queryFn: handlegGeocoding,
     staleTime: Infinity,
   });

@@ -14,6 +14,7 @@ const CouponModal = (props: any) => {
   const [error, setError]: any = useState(false);
   const muCheckPromoCode = useMutation({mutationKey: ['createPaymentIntent'], mutationFn: checkPromoCode, onError: () => {}});
   const handleOnChange = (event: any) => {
+    if (event?.nativeEvent?.text === undefined) return;
     setCode(event.nativeEvent.text);
     setError(false);
   };

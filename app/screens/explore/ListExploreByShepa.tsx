@@ -49,6 +49,7 @@ const ListExploreByShepa = (props: any) => {
   }, [isLoading]);
 
   const handleOnChange = (event: any) => {
+    if (event?.nativeEvent?.text === undefined) return;
     setInputValue(event.nativeEvent.text);
     if (!isLoading) {
       setSearchValue(event.nativeEvent.text);

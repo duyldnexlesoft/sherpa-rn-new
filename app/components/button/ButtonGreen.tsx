@@ -1,6 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import Text from '../Text';
+import { remapProps } from 'nativewind';
 
 export interface ButtonProps {
   style?: any;
@@ -23,5 +24,5 @@ const ButtonGreen = (props: ButtonProps) => {
     </View>
   );
 };
-
+remapProps(ButtonGreen, {className: 'style'});
 export default ButtonGreen;

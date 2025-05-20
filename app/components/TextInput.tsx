@@ -70,8 +70,10 @@ const InputComponent = (props: any) => {
     setFocusInput(true);
   };
   const handleOnEndEditing = (event: any) => {
-    setLableInput(!!event.nativeEvent.text);
-    setFocusInput(false);
+    if (event?.nativeEvent?.text !== undefined) {
+      setLableInput(!!event.nativeEvent.text);
+      setFocusInput(false);
+    }
   };
   const cssBorder = () => {
     if (props.error) {

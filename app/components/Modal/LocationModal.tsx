@@ -19,7 +19,7 @@ const LocationModal = (props: any) => {
   const statusBarHeight = Platform.OS === 'android' ? Number(StatusBar.currentHeight || 0) + 10 : 0;
 
   const handlegGeocoding = () => (searchValue ? geocoding(searchValue, 10, 'US') : null);
-  const {data: dataGeocoding, isLoading} = useQuery({queryKey: ['geocoding', searchValue], queryFn: handlegGeocoding, staleTime: Infinity});
+  const {data: dataGeocoding, isLoading} = useQuery({queryKey: ['geocodingSearch', searchValue], queryFn: handlegGeocoding, staleTime: Infinity});
 
   useEffect(() => {
     if (!isLoading) {
@@ -28,6 +28,7 @@ const LocationModal = (props: any) => {
   }, [isLoading]);
 
   const handleOnChange = (event: any) => {
+    if (event?.nativeEvent?.text === undefined) return;
     setLocationValue(event.nativeEvent.text);
     if (!isLoading) {
       setSearchText(event.nativeEvent.text);

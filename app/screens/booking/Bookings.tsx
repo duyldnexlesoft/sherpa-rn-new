@@ -127,7 +127,7 @@ const Bookings = (props: any) => {
               placeholderTextColor={colors.gray500}
               className="bg-white"
               value={searchValue}
-              onChange={event => handleQueryData(tab, event.nativeEvent.text, 0)}
+              onChange={event => event?.nativeEvent?.text !== undefined && handleQueryData(tab, event?.nativeEvent?.text, 0)}
               rightAction={searchValue ? () => handleQueryData(tab, '', 0) : null}
               rightIcon={searchValue ? ClearIcon : <SearchIcon className="text-gray-500" width={20} height={20} />}
             />
@@ -194,7 +194,7 @@ const Bookings = (props: any) => {
                     <View className="flex-1 p-2.5 flex-row items-center justify-between bg-lightSecondary">
                       <View className="w-[62px] h-[40px] mr-2.5 rounded overflow-hidden bg-gray-100 items-center justify-center">
                         {Service?.Images?.[0] && <Image uri={Service?.Images?.[0]} className="w-full flex-[1]" />}
-                        {!Service?.Images?.[0] && <Svg icon={ImageIcon} className="text-gray-300" width={22} height={22} />}
+                        {!Service?.Images?.[0] && <ImageIcon className="text-gray-300" width={22} height={22} />}
                       </View>
                       <View className="flex-1">
                         <View className="flex-row items-center justify-between">

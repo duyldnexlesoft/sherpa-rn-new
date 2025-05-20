@@ -19,7 +19,7 @@ import {useMutation} from '@tanstack/react-query';
 import {PaymentSheetError, useStripe} from '@stripe/stripe-react-native';
 import {useDispatch} from 'react-redux';
 import {bookingAction} from 'app/store/actions';
-import { remapProps } from 'nativewind';
+import {remapProps} from 'nativewind';
 
 const ReviewModal = (props: any) => {
   const {booking} = props;
@@ -141,7 +141,7 @@ const ReviewModal = (props: any) => {
                     numberOfLines={10}
                     height={100}
                     value={Comment}
-                    onChange={event => setComment(event.nativeEvent.text)}
+                    onChange={event => event?.nativeEvent?.text !== undefined && setComment(event.nativeEvent.text)}
                   />
                   <View className="mt-4 border border-border p-0.5 rounded w-full">
                     <View className="rounded">
@@ -175,6 +175,7 @@ const ReviewModal = (props: any) => {
                             keyboardType="numeric"
                             leftIcon={DollarSvg}
                             onChange={(event: any) => {
+                              if (event?.nativeEvent?.text === undefined) return;
                               const text = event.nativeEvent.text;
                               const indexDot = indexOf(text, '.');
                               const firstText = indexDot >= 0 ? text.substring(0, indexOf(text, '.')) : text;
