@@ -17,8 +17,7 @@
           "dark": {
             "image": "./app/assets/image/Onboarding.png"
           },
-          "resizeMode": "contain",
-          "imageWidth": 1024
+            "imageWidth": 1024
         }
       ],
       [
@@ -46,7 +45,7 @@
       ]
     ],
     "orientation": "portrait",
-    "icon": "./app/assets/image/Onboarding.png",
+    "icon": "./app/assets/image/AppIcon1024.png",
     "userInterfaceStyle": "light",
     "assetBundlePatterns": ["**/*"],
     "ios": {

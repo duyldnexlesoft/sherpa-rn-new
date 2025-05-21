@@ -2,15 +2,14 @@
   "name": "sherpa-app",
   "version": "1.0.0",
   "scripts": {
-    "android": "patch-package && expo run:android",
+    "android": "npm install patch-package postinstall-postinstall --save-dev && patch-package && expo run:android",
     "ios": "expo run:ios",
     "start": "expo start",
     "prebuild": "expo prebuild",
     "pod": "cd ios && pod install",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" && prettier -c \"**/*.{js,jsx,ts,tsx,json}\"",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
-    "web": "expo start --web",
-    "postinstall": "patch-package"
+    "web": "expo start --web"
   },
   "dependencies": {
     "@d11/react-native-fast-image": "^8.9.2",
@@ -37,8 +36,6 @@
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "nativewind": "latest",
-    "patch-package": "^8.0.0",
-    "postinstall-postinstall": "^2.1.0",
     "react": "19.0.0",
     "react-hook-form": "^7.56.3",
     "react-i18next": "^15.5.1",
@@ -73,6 +70,8 @@
     "eslint": "^9.25.1",
     "eslint-config-expo": "^9.2.0",
     "eslint-config-prettier": "^10.1.2",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "react-native-dotenv": "^3.4.10",

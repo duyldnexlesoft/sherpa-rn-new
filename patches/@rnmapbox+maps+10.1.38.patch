@@ -816,3 +816,22 @@ index fee7f22..6181dc9 100644
  {
      return this.entryIterator
  }
+\ No newline at end of file
+diff --git a/node_modules/@rnmapbox/maps/src/components/MapView.tsx b/node_modules/@rnmapbox/maps/src/components/MapView.tsx
+index 1304233..512460a 100644
+--- a/node_modules/@rnmapbox/maps/src/components/MapView.tsx
++++ b/node_modules/@rnmapbox/maps/src/components/MapView.tsx
+@@ -1170,6 +1170,13 @@ class MapView extends NativeBridgeComponent(
+         );
+       }
+     }
++    if (mapView == null) {
++      mapView = (
++        <RNMBXMapView {...props} {...callbacks}>
++          {this.props.children}
++        </RNMBXMapView>
++      )
++    }
+ 
+     return (
+       <View

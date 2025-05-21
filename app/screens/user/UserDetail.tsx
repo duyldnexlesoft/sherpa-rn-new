@@ -107,8 +107,8 @@ const UserDetail = (props: any) => {
 
   const scrollHandler = useAnimatedScrollHandler((event: any) => {
     transTop.value = event.contentOffset.y < 0 ? 0 : event.contentOffset.y;
-    let index = event.contentOffset.y - 230;
-    transOpacity.value = (index > 50 ? 50 : index < 0 ? 0 : index) / 50;
+    let index = event.contentOffset.y - 230;    
+    transOpacity.value = Number(((index > 50 ? 50 : index < 0 ? 0 : index) / 50).toFixed(0));
     const checkScroll = event.contentOffset.y > 0 && event.layoutMeasurement.height / (event.contentSize.height - event.contentOffset.y) > 0.6;
     if (checkScroll && !isLoading && totalReview > reviews.length && tab === PROFILE_TABS.REVIEWS) {
       runOnJS(setSkip)(skip + LIMIT_ITEM);

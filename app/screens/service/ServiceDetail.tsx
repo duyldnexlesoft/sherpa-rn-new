@@ -73,9 +73,11 @@ const ServiceDetail = (props: any) => {
     return (
       <MapView scrollEnabled={false} zoomEnabled={false} logoEnabled={false} attributionEnabled={false} style={{flex: 1, height: 300}}>
         <Camera bounds={{ne: topLeftLocation, sw: botRightLocation}} animationDuration={0} />
-        <PointAnnotation id="pointAnnoStart" coordinate={StartAddressLocation.coordinates}>
-          <Svg icon={LocationIcon} className="text-primary" />
-        </PointAnnotation>
+        {StartAddressLocation && (
+          <PointAnnotation id="pointAnnoStart" coordinate={StartAddressLocation.coordinates}>
+            <Svg icon={LocationIcon} className="text-primary" />
+          </PointAnnotation>
+        )}
         {EndAddressLocation && (
           <PointAnnotation id="pointAnnoEnd" coordinate={EndAddressLocation.coordinates}>
             <Svg icon={LocationIcon} className="text-secondary" />
