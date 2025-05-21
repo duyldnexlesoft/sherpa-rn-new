@@ -1,3 +1,4 @@
+import { remapProps } from 'nativewind';
 import {Text as TextReact} from 'react-native';
 
 const Text = (props: any) => {
@@ -8,4 +9,5 @@ const Text = (props: any) => {
   );
 };
 
+remapProps(Text, {className: 'style'});
 export default Text;

@@ -10,6 +10,7 @@ import DatePicker from 'react-native-date-picker';
 import _ from 'lodash';
 import {useTranslation} from 'react-i18next';
 import Text from 'app/components/Text';
+import Svg from 'app/components/Svg';
 
 const AboutEdit = ({user, hookForm, dateOfBirth, setDateOfBirth, countryCode, setModalCountryCode, setLocationModal, setModalGender}: any) => {
   const {t} = useTranslation();
@@ -85,7 +86,7 @@ const AboutEdit = ({user, hookForm, dateOfBirth, setDateOfBirth, countryCode, se
             label={t('dateOfBirth')}
             name="DateOfBirth"
             control={control}
-            rightIcon={<CalendarIcon className="text-gray-500" />}
+            rightIcon={<Svg icon={CalendarIcon} className="text-gray-500" />}
             onPress={() => setModalOB(true)}
           />
         </View>

@@ -25,6 +25,7 @@ import Alert from 'app/components/Alert';
 import Recaptcha from 'react-native-recaptcha-that-works';
 import {CAPTCHA_SITE_KEY, WEBAPP_URL} from '@env';
 import CouponModal from 'app/components/Modal/CouponModal';
+import Svg from 'app/components/Svg';
 const {width} = Dimensions.get('screen');
 
 const Checkout = (props: any) => {
@@ -112,11 +113,11 @@ const Checkout = (props: any) => {
               )}
               {!VerifiedUser?.Images?.[0] && (
                 <View className="w-6 h-6 bg-secondary rounded-full items-center justify-center">
-                  <User30Svg className="text-gray-500" width={10} height={10} />
+                  <Svg icon={User30Svg} className="text-gray-500" width={10} height={10} />
                 </View>
               )}
               <TouchableOpacity className="pl-2" onPress={() => props.navigation.navigate(ROUTER.MESSAGES)}>
-                <MessageOutlineIcon className="text-gray-500" width={24} height={24} />
+                <Svg icon={MessageOutlineIcon} className="text-gray-500" width={24} height={24} />
               </TouchableOpacity>
             </View>
           </View>
@@ -152,14 +153,14 @@ const Checkout = (props: any) => {
               {!promo && (
                 <Pressable onPress={() => setCouponModal(true)} className="bg-lightGray border border-border h-8 px-2.5 flex-row items-center">
                   <Text className="text-gray-500 font-medium">Enter code</Text>
-                  <ArrowRightIcon className="text-gray-500 ml-1.5" height={12} width={6} />
+                  <Svg icon={ArrowRightIcon} className="text-gray-500 ml-1.5" height={12} width={6} />
                 </Pressable>
               )}
               {promo && (
                 <Pressable className="bg-lightPrimary border border-dashed border-primary h-8 px-2.5 flex-row items-center">
                   <Text className="text-textContainer font-medium">{promo.code}</Text>
                   <Pressable onPress={() => setPromo(null)}>
-                    <ClearIcon className="text-gray-500 ml-1.5" height={24} />
+                    <Svg icon={ClearIcon} className="text-gray-500 ml-1.5" height={24} />
                   </Pressable>
                 </Pressable>
               )}

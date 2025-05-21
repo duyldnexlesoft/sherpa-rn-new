@@ -12,6 +12,7 @@ import {getWarningAvailability} from 'app/utils/helpler';
 import {split} from 'lodash';
 import Modal from './Modal';
 import Svg from '../Svg';
+import { remapProps } from 'nativewind';
 
 const DayRangeModal = (props: any) => {
   const {t} = useTranslation();
@@ -213,5 +214,5 @@ const DayRangeModal = (props: any) => {
     </Modal>
   );
 };
-
+remapProps(DayRangeModal, {className: 'style'});
 export default DayRangeModal;

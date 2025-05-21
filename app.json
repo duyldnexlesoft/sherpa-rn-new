@@ -63,7 +63,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/image/Onboarding.png",
+        "foregroundImage": "./app/assets/image/AppIcon1024.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [
@@ -76,7 +76,7 @@
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.ACCESS_COARSE_LOCATION"
       ],
-      "package": "com.duyld.sherpaapp",
+      "package": "com.sherpareactnativeapp",
       "edgeToEdgeEnabled": true
     }
   }

@@ -27,6 +27,7 @@ import {geocoding} from 'app/api/mapboxApi';
 import ButtonGreen from 'app/components/button/ButtonGreen';
 import {addWaitlist, getWaitlist} from 'app/api/waitlistApi';
 import NavBar from 'app/components/NavBar';
+import Svg from 'app/components/Svg';
 const dimensions = Dimensions.get('screen');
 
 const ListExplore = (props: any) => {
@@ -177,7 +178,7 @@ const ListExplore = (props: any) => {
                 <TextInput
                   label="When?"
                   value={renderRangeDate()}
-                  rightIcon={dateRange?.startDate || dateRange?.endDate ? ClearIcon : <CalendarIcon className="text-gray-500" />}
+                  rightIcon={dateRange?.startDate || dateRange?.endDate ? ClearIcon : <Svg icon={CalendarIcon} className="text-gray-500" />}
                   rightAction={dateRange?.startDate || dateRange?.endDate ? () => handleQueryData({dateRange: null}) : null}
                   onPress={() => setDateRangeModal(true)}
                 />
@@ -186,7 +187,7 @@ const ListExplore = (props: any) => {
                 <Pressable
                   className="rounded-md items-center justify-center bg-backgroundHover w-12 h-12"
                   onPress={() => props.navigation.navigate(ROUTER.FIND_SHERPA)}>
-                  <FilterIcon className="text-gray-500" />
+                  <Svg icon={FilterIcon} className="text-gray-500" />
                 </Pressable>
               </View>
             </View>

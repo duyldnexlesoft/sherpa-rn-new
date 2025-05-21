@@ -2,14 +2,15 @@
   "name": "sherpa-app",
   "version": "1.0.0",
   "scripts": {
-    "android": "expo run:android",
+    "android": "patch-package && expo run:android",
     "ios": "expo run:ios",
     "start": "expo start",
     "prebuild": "expo prebuild",
     "pod": "cd ios && pod install",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" && prettier -c \"**/*.{js,jsx,ts,tsx,json}\"",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@d11/react-native-fast-image": "^8.9.2",

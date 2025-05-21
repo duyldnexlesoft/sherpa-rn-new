@@ -86,11 +86,11 @@ const InputComponent = (props: any) => {
   };
   return (
     <View className={'w-full flex-row items-center justify-between rounded-md border bg-white ' + cssBorder()} style={{height: props.height || 50}}>
-      {props.onPress && <Pressable className="absolute z-20 h-12 w-full" onPress={props.onPress} />}
+      {props.onPress && <Pressable className="absolute z-1 h-12 w-full" onPress={props.onPress} />}
       {props.leftIcon && (
         <Pressable
           onLayout={event => setWidthLeftIcon((event.nativeEvent.layout.width || 0) + PADDING_LEFT)}
-          className={`flex h-12 items-center justify-center p-2 ${props.leftAction ? 'z-30' : ''}`}
+          className={`flex h-12 items-center justify-center p-2 ${props.leftAction ? 'z-2' : ''}`}
           onPress={props.leftAction}>
           {props.leftIcon}
         </Pressable>
@@ -137,7 +137,7 @@ const InputComponent = (props: any) => {
         />
       )} */}
       {props.rightIcon && (
-        <Pressable className={`flex h-12 items-center justify-center p-2 ${props.rightAction ? 'z-30' : ''}`} onPress={props.rightAction}>
+        <Pressable className={`flex h-12 items-center justify-center p-2 ${props.rightAction ? 'z-2' : ''}`} onPress={props.rightAction}>
           {props.rightIcon}
         </Pressable>
       )}

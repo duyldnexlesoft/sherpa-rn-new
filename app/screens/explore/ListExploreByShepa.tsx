@@ -14,6 +14,7 @@ import Text from 'app/components/Text';
 import AnimatedLoading from 'app/components/Animated/AnimatedLoading';
 import BoxShepa from 'app/components/BoxShepa';
 import {useTranslation} from 'react-i18next';
+import Svg from 'app/components/Svg';
 const limit = 10;
 
 const ListExploreByShepa = (props: any) => {
@@ -80,7 +81,7 @@ const ListExploreByShepa = (props: any) => {
             label="Sherpas by Name"
             value={inputValue}
             onChange={handleOnChange}
-            rightIcon={!inputValue ? <SearchIcon className="text-gray-500" width={20} height={20} /> : ClearIcon}
+            rightIcon={!inputValue ? <Svg icon={SearchIcon} className="text-gray-500" width={20} height={20} /> : ClearIcon}
             rightAction={inputValue ? () => setInputValue('') : null}
           />
         </View>

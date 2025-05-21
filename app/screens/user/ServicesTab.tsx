@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { Pressable, StyleSheet, View } from 'react-native';
 import Text from 'app/components/Text';
 import ImageIcon from 'app/assets/svg/image.svg';

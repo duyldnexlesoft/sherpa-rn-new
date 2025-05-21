@@ -1,7 +1,8 @@
 import {useTranslation} from 'react-i18next';
-import {Pressable, SafeAreaView, Text, View} from 'react-native';
+import {Pressable, SafeAreaView, View} from 'react-native';
 import Modal from './Modal';
 import { remapProps } from 'nativewind';
+import Text from '../Text';
 
 const AlertSelectModal = (props: any) => {
   const {setModal, modal, onSelect, title, items} = props;
