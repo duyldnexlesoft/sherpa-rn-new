@@ -66,8 +66,8 @@ const Modal = (props: any) => {
       setModal(false);
       return true;
     };
-    BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-    // return () => BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+    return () => backHandler.remove();
   }, [modal]);
 
   if (!modalReact) return <></>;

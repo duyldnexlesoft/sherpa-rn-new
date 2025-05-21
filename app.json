@@ -30,6 +30,7 @@
           "intercomRegion": "US"
         }
       ],
+
       [
         "@rnmapbox/maps",
         {
@@ -46,6 +47,7 @@
     ],
     "orientation": "portrait",
     "icon": "./app/assets/image/Onboarding.png",
+    "userInterfaceStyle": "light",
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
