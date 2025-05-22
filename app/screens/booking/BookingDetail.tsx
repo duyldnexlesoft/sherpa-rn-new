@@ -63,7 +63,7 @@ const BookingDetail = (props: any) => {
   const scrollHandler = useAnimatedScrollHandler((event: any) => {
     transTop.value = event.contentOffset.y < 0 ? 0 : event.contentOffset.y;
     let index = event.contentOffset.y - 230;
-    transOpacity.value = (index > 50 ? 50 : index < 0 ? 0 : index) / 50;
+    transOpacity.value = Number(((index > 50 ? 50 : index < 0 ? 0 : index) / 50).toFixed(0));
   });
 
   const styleOpacity = useAnimatedStyle(() => ({opacity: transOpacity.value, zIndex: transOpacity.value * 2}));
