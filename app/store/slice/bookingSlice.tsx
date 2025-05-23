@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   booking: null,
+  timeNotification: {},
 };
 
 const setBooking = (state: any, action: any) => {
@@ -11,6 +12,9 @@ const setBooking = (state: any, action: any) => {
 const cleanBooking = (state: any) => {
   state.booking = null;
 };
+const setTimeNotification = (state: any, action: {payload: any}) => {
+  state.timeNotification = {time: new Date().getTime(), data: action.payload};
+};
 
 export default createSlice({
   name: 'booking',
@@ -18,5 +22,6 @@ export default createSlice({
   reducers: {
     setBooking,
     cleanBooking,
+    setTimeNotification,
   },
 });

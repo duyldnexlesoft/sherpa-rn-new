@@ -49,3 +49,9 @@ export const resetPassword = (payload: any) => {
 export const resendVerifyAccountLink = (email: any) => {``
   return get('/api/common/v1/resendVerifyAccountLink?email=' + encodeURIComponent(email));
 };
+export const updateFCMToken = (fcmToken: any) => {
+  return put('/api/common/v1/updateFCMToken', {fcmToken});
+};
+export const checkNotice = () => {
+  return get('/api/user/v1/checkNotice');
+};

@@ -81,7 +81,7 @@ const Checkout = (props: any) => {
         {
           onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ['getUserOrders']});
-            props.navigation.navigate(ROUTER.BOOKING_DEAIL);
+            props.navigation.replace(ROUTER.HOME, {screen: ROUTER.BOOKINGS});
             Alert.alert('Success', t('bookingConfirmed'));
           },
         },

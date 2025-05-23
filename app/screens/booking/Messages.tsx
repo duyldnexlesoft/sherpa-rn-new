@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
 import {SafeAreaView, Text, View, Pressable, TextInput, FlatList, Platform, TouchableOpacity, KeyboardAvoidingView, Alert} from 'react-native';
@@ -25,13 +26,15 @@ import ColorLayout from 'app/layout/ColorLayout';
 import Image from 'app/components/Image';
 import {getImageSize} from 'app/utils/helpler';
 import Svg from 'app/components/Svg';
+import {navigationRef} from 'app/navigation/RootNavigation';
+import ROUTER from 'app/navigation/router';
 const width = 275;
 const gap = 5;
 
 const Messages = ({navigation, route}: any) => {
   const {t} = useTranslation();
   const {currentUser} = useSelector(userSelector);
-  const {booking} = useSelector(bookingSelector);
+  const {booking, timeNotification} = useSelector(bookingSelector);
   const queryClient = useQueryClient();
   const verifiedUser = booking.VerifiedUser;
   const VerifiedUserId = verifiedUser._id;
@@ -46,7 +49,6 @@ const Messages = ({navigation, route}: any) => {
   const [visibleSnackbar, setVisibleSnackbar] = useState(false);
   const [ConversationId, setConversationId]: any = useState(route.params?.ConversationId);
   const [top, setTop]: any = useState(0);
-  const [seconds, setSeconds] = useState(0);
   const [sendText, setSendText]: any = useState('');
 
   const handleGetMessagesSuccess = (data: any, isTop: boolean) => {
@@ -94,19 +96,17 @@ const Messages = ({navigation, route}: any) => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => setSeconds(s => s + 1), 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     handleGetMessagesSuccess(dataMessage, true);
   }, [dataMessage?.data?.data]);
 
+
   useEffect(() => {
-    if (seconds) {
+    const route = navigationRef.current?.getCurrentRoute();
+    const currentScreen = route.name;
+    if (currentScreen === ROUTER.MESSAGES) {
       handleSetParamsMessage();
     }
-  }, [seconds]);
+  }, [timeNotification]);
 
   useEffect(() => {
     if (!isEmpty(messages) && messages?.[0]?.ConversationId !== ConversationId) {

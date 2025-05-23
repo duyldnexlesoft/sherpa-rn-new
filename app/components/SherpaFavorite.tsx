@@ -14,7 +14,7 @@ const SherpaFavorite = ({verifiedUser, className, size}: any) => {
   const {sherpa} = useSelector(userSelector);
   const {booking} = useSelector(bookingSelector);
   const user = verifiedUser || booking?.VerifiedUser || sherpa;
-  const [isFavorite, setIsFavorite]: any = useState(user.isFavorite);
+  const [isFavorite, setIsFavorite]: any = useState(user?.isFavorite);
   const queryClient = useQueryClient();
   const muSetFavorite = useMutation({
     mutationKey: ['setFavorite'],
@@ -25,15 +25,15 @@ const SherpaFavorite = ({verifiedUser, className, size}: any) => {
       queryClient.refetchQueries({queryKey: ['getUserOrders']});
       queryClient.refetchQueries({queryKey: ['getShepasByName']});
       if (sherpa) {
-        dispatch(userAction.setSherpa({...sherpa, isFavorite: !user.isFavorite}));
+        dispatch(userAction.setSherpa({...sherpa, isFavorite: !user?.isFavorite}));
       }
     },
     onError: () => {},
   });
 
   useEffect(() => {
-    setIsFavorite(user.isFavorite);
-  }, [user.isFavorite]);
+    setIsFavorite(user?.isFavorite);
+  }, [user?.isFavorite]);
 
   const handleSetFavorite = () => {
     setIsFavorite(!isFavorite);

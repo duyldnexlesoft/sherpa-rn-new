@@ -5,6 +5,11 @@ import {CURRENT_USER} from '../../utils/constants';
 const initialState = {
   currentUser: null,
   sherpa: null,
+  isNotice: false,
+};
+
+const setCheckNotice = (state: any, action: {payload: any}) => {
+  state.isNotice = action.payload;
 };
 
 const setSherpa = (state: any, action: any) => {
@@ -40,6 +45,7 @@ export default createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setCheckNotice,
     setCurrentUser,
     removeCurrentUser,
     updateCurrentUser,

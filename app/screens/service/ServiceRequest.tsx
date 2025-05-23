@@ -36,7 +36,7 @@ const ServiceRequest = (props: any) => {
   const {t} = useTranslation();
   const {currentUser} = useSelector(userSelector);
   const queryClient = useQueryClient();
-  const {booking, service, verifiedUser, rangeDate, isUpdated} = props?.route?.params;
+  const {booking, service, verifiedUser, rangeDate} = props?.route?.params;
   const DefaultAmountTime = service.DefaultAmountTime || 0;
   const {RUNNING, WALKING, CYCLING, HIKING, PERSONAL_TRAINING, GOLF, TENNIS, PERFORMATIVE_SPORTS, OTHER} = CATEGORIES;
   const [width, setWidth]: any = useState(0);
@@ -64,10 +64,11 @@ const ServiceRequest = (props: any) => {
     mutationFn: createUserOrder,
     onSuccess: ({data}: any) => {
       if (data?.code === 201) {
-        props.navigation.navigate(ROUTER.HOME, {screen: ROUTER.BOOKINGS});
+        props.navigation.replace(ROUTER.HOME, {screen: ROUTER.BOOKINGS, time: new Date().getTime()});
+        queryClient.invalidateQueries({queryKey: ['getUserOrders']});
       } else if (data?.code === 409) {
         Alert.alert(t('serviceOld'));
-        props.navigation.navigate(ROUTER.HOME, {screen: ROUTER.EXPLORE});
+        props.navigation.replace(ROUTER.HOME, {screen: ROUTER.EXPLORE});
       } else {
         Alert.alert(t('requestFailed'));
       }
@@ -124,14 +125,16 @@ const ServiceRequest = (props: any) => {
     }
     queryClient.invalidateQueries({queryKey: ['getUserOrders']});
   };
-  const handleBack = () => props.navigation.navigate(ROUTER.SERVICE_DETAIL, {verifiedUser, service});
-  const handleUpdateProfile = () => props.navigation.navigate(ROUTER.EDIT_GALLERY, {isUpdateProfile: true, service, verifiedUser, rangeDate});
+  const handleUpdateProfile = () => {
+    setUpdateModal(false);
+    props.navigation.navigate(ROUTER.EDIT_GALLERY, {isUpdateProfile: true, service, verifiedUser, rangeDate});
+  };
   const getMinutes = () => moment(dateRange.endDate).diff(moment(dateRange.startDate), 'minutes');
   const calculateAmount = () => floor((booking?.Amount || service.Amount) * (getMinutes() / 60));
 
   return (
     <ColorLayout isLoading={muCreateUserOrder.isPending} className="bg-white">
-      <Header {...props} showHeaderTitle leftAction={isUpdated && handleBack} />
+      <Header {...props} showHeaderTitle />
       <View className="flex-1 bg-white p-4 items-center">
         <View className="flex-row">
           <Text className="font-bold">{t('bookedService1')}</Text>

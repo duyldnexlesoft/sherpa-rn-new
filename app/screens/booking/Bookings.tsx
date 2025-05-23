@@ -36,6 +36,9 @@ const dimensions = Dimensions.get('screen');
 const Bookings = (props: any) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
+  const params = props?.route?.params;
+  console.log(params);
+  
   const queryClient = useQueryClient();
   const {booking} = useSelector(bookingSelector);
   const {REQUESTED, REJECTED, ACCEPTED, CONFIRMED, COMPLETED, CANCELED, REFUNDED, EXPIRED} = STATUS;
@@ -45,6 +48,11 @@ const Bookings = (props: any) => {
   const [searchValue, setSearchValue]: any = useState('');
   const [skip, setSkip]: any = useState(0);
   const {currentUser} = useSelector(userSelector);
+
+  useEffect(() => {
+    queryClient.invalidateQueries({queryKey: ['getUserOrders']});
+    handleQueryData(BOOKING_TABS.UPCOMING, searchValue, skip);
+  }, [params?.time]);
 
   const handleRequestData = () => {
     let status = null;
@@ -59,6 +67,7 @@ const Bookings = (props: any) => {
       isAthleteReview = '1';
       status = [COMPLETED, CANCELED, REFUNDED, REJECTED, EXPIRED].join(',');
     }
+    queryClient.invalidateQueries({queryKey: ['checkNotice']});
     return getUserOrders({limit, skip, status, isAthleteReview, searchValue, userId: currentUser._id, sortBy: 'StartTime', sortOrder: 'desc'});
   };
 
@@ -253,9 +262,9 @@ const Bookings = (props: any) => {
                       <View className="flex-row items-center">
                         <LabelStatus booking={booking} />
                         {Review && (
-                          <View className="flex-row items-center h-[22px] border border-blue-50 px-2 ml-2 rounded-sm">
-                            <StarIcon width={13} />
-                            <Text className="text-xs text-blue-500 pl-1">{Review?.Rating || ''}</Text>
+                          <View className="flex-row items-center ml-2 rounded-sm">
+                            <StarIcon width={16} className="text-red-500" />
+                            <Text className="text-base font-medium text-textContainer pl-1.5">{Review?.Rating || ''}.0</Text>
                           </View>
                         )}
                       </View>

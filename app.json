@@ -69,6 +69,9 @@
         "NSPhotoLibraryUsageDescription": "This app would like to save images to your device.",
         "NSPhotoLibraryAddUsageDescription": "This app would like to save images to your device.",
         "NSLocationWhenInUseUsageDescription": "Sherpa uses your location to filter services to nearby offerings."
+      },
+      "entitlements": {
+        "aps-environment": "development"
       }
     },
     "android": {
