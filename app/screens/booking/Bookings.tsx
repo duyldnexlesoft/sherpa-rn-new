@@ -37,8 +37,6 @@ const Bookings = (props: any) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const params = props?.route?.params;
-  console.log(params);
-  
   const queryClient = useQueryClient();
   const {booking} = useSelector(bookingSelector);
   const {REQUESTED, REJECTED, ACCEPTED, CONFIRMED, COMPLETED, CANCELED, REFUNDED, EXPIRED} = STATUS;
