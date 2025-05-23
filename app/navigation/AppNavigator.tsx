@@ -77,14 +77,17 @@ const StackScreenAuthen = () => {
   useEffect(() => {
     queryClient.invalidateQueries({queryKey: ['checkNotice']});
     if (timeNotification?.data?.bookingId) {
-      queryClient.invalidateQueries({queryKey: ['getUserOrders']});
-      (async () => {
-        const dataBooking = await muBooking.mutateAsync({userOrderId: timeNotification?.data?.bookingId});
+      const route = navigationRef.current?.getCurrentRoute();
+      const currentScreen = route.name;
+      if ([ROUTER.BOOKINGS, ROUTER.BOOKING_DEAIL].includes(currentScreen)) {
+        queryClient.invalidateQueries({queryKey: ['getUserOrders']});
+      }
+      muBooking.mutateAsync({userOrderId: timeNotification?.data?.bookingId}).then(dataBooking => {
         dispatch(bookingAction.setBooking(dataBooking?.data?.data?.edges?.[0]));
         if (timeNotification?.data?.isMessage) {
           navigation.dispatch(CommonActions.navigate(ROUTER.MESSAGES));
         }
-      })();
+      });
     }
   }, [timeNotification]);
   const muBooking = useMutation({
@@ -118,7 +121,6 @@ const StackScreenAuthen = () => {
     if (dataCheckNotice?.data?.code === 200) {
       dispatch(userAction.setCheckNotice(!!dataCheckNotice?.data?.data));
     }
-    setBooking(data?.data?.data?.edges?.[0]);
   }, [dataCheckNotice?.data?.data]);
 
   useEffect(() => {
