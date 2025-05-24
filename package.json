@@ -4,6 +4,8 @@
   "scripts": {
     "android": "npm install patch-package postinstall-postinstall --save-dev && patch-package && expo run:android",
     "ios": "expo run:ios",
+    "build:android": "npm install patch-package postinstall-postinstall --save-dev && patch-package && cd android && ./gradlew :app:assembleDebug",
+    "bundle:android": "npm install patch-package postinstall-postinstall --save-dev && patch-package && cd android && ./gradlew bundleRelease",
     "start": "expo start",
     "prebuild": "expo prebuild",
     "pod": "cd ios && pod install",
