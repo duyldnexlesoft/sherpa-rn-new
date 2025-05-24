@@ -10,6 +10,8 @@
       "tsconfigPaths": true
     },
     "plugins": [
+      "./plugins/with-gradle-properties",
+      "./plugins/with-signing-config",
       "@react-native-firebase/app",
       [
         "expo-build-properties",
@@ -22,11 +24,13 @@
       [
         "expo-splash-screen",
         {
-          "image": "./app/assets/image/Onboarding.png",
+          "image": "./app/assets/image/AppIcon1024.png",
           "dark": {
-            "image": "./app/assets/image/Onboarding.png"
+            "image": "./app/assets/image/AppIcon1024.png"
           },
-          "imageWidth": 1024
+          "imageWidth": 200,
+          "resizeMode": "cover",
+          "backgroundColor": "#014051"
         }
       ],
       [

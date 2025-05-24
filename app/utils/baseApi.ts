@@ -12,6 +12,7 @@ const execute = async (method: string, endpoint: string, body: object = {}, head
   const userStorage = await AsyncStorage.getItem(CURRENT_USER);
   axios.defaults.baseURL = BASE_URL;
   // axios.defaults.baseURL = 'http://localhost:3001';
+  // axios.defaults.baseURL = 'http://192.168.100.174:3001';
   const token = userStorage ? JSON.parse(userStorage).AccessToken : '';
   const requestConfig: any = {
     withCredentials: true,
