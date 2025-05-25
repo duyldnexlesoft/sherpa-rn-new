@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "android": "npm install patch-package postinstall-postinstall --save-dev && patch-package && expo run:android",
-    "build:android": "npm install patch-package postinstall-postinstall --save-dev && patch-package && cd android && ./gradlew :app:assembleDebug",
+    "build:android": "npm install patch-package postinstall-postinstall --save-dev && patch-package && cd android && ./gradlew assembleRelease",
     "bundle:android": "npm install patch-package postinstall-postinstall --save-dev && patch-package && cd android && ./gradlew bundleRelease",
     "ios": "expo run:ios",
     "start": "expo start",

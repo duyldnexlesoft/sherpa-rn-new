@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {CommonActions, NavigationContainer} from '@react-navigation/native';
+import {CommonActions, NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useEffect, useState, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
@@ -40,7 +40,6 @@ import Intercom from '@intercom/intercom-react-native';
 import {generateHmac, getIntercomContact} from 'app/api/intercomApi';
 import {requestUserPermission} from 'app/utils/firebase';
 import {navigationRef} from './RootNavigation';
-import {useNavigation} from '@react-navigation/native';
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
@@ -180,18 +179,16 @@ const AppNavigator = (props: any) => {
   };
 
   const getStorageCurrentUser = async () => {
-    try {
-      const userStorage: any = await AsyncStorage.getItem(CURRENT_USER);
-      if (userStorage) {
-        const user = JSON.parse(userStorage);
-        const response = await getProfile(user._id);
-        if (response?.data?.code === 401) return;
-        dispatch(userAction.setCurrentUser({...user, ...response?.data?.data}));
-        const token = await requestUserPermission();
-        if (token) setTimeout(() => updateFCMToken(token), 200);
-        setTimeout(() => loginIntercom(), 200);
-      }
-    } catch (_error) {}
+    const userStorage: any = await AsyncStorage.getItem(CURRENT_USER);
+    if (userStorage) {
+      const user = JSON.parse(userStorage);
+      const response = await getProfile(user._id);
+      if (response?.data?.code === 401) return true;
+      dispatch(userAction.setCurrentUser({...user, ...response?.data?.data}));
+      const token = await requestUserPermission();
+      if (token) setTimeout(() => updateFCMToken(token), 200);
+      setTimeout(() => loginIntercom(), 200);
+    }
     return true;
   };
   const handleNavigationRef = (ref: any) => (navigationRef.current = ref);
