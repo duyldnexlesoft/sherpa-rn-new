@@ -1,6 +1,6 @@
 import {StatusBar, View, Platform} from 'react-native';
 import LoadingScreenModal from 'app/components/Modal/LoadingScreenModal';
-import { tw } from 'app/utils/helpler';
+import {tw} from 'app/utils/helpler';
 
 const ColorLayout = ({isLoading, children, light, className}: any) => {
   const style = tw`${className}`;
@@ -9,7 +9,6 @@ const ColorLayout = ({isLoading, children, light, className}: any) => {
   return (
     <View className="h-full w-full" style={[{paddingTop: statusBarHeight + paramPaddingTop}, style]}>
       <LoadingScreenModal isLoading={isLoading} />
-      {Platform.OS !== 'ios' && <StatusBar animated={true} backgroundColor={'transparent'} barStyle={!light ? 'dark-content' : 'light-content'} />}
       {children}
     </View>
   );
